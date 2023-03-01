@@ -23,7 +23,7 @@
 
 <p align="center">
   <a href="" rel="noopener">
- <img width=200px height=200px src="./assets/native.png" alt="Project logo"></a>
+ <img width=400px height=200px src="./assets/native.png" alt="Project logo"></a>
 </p>
 
 ### Node js Express
