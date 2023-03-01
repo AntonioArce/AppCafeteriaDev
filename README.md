@@ -16,3 +16,19 @@
 
 - [Arce Gudiño Antonio](https://github.com/AntonioArce)
 - [Escorcia Peña Jose Daniel]()
+
+## ✍️ Tecnologias a Utilizar <a name = "authors"></a>
+
+### React Native
+
+<p align="center">
+  <a href="" rel="noopener">
+ <img width=200px height=200px src="./assets/native.png" alt="Project logo"></a>
+</p>
+
+### Node js Express
+
+<p align="center">
+  <a href="" rel="noopener">
+ <img width=200px height=200px src="./assets/node.png" alt="Project logo"></a>
+</p>
