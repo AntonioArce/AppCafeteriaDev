@@ -1,11 +1,10 @@
 /* const mysql = require('mysql') */
-import mysql from 'mysql'
+import {createPool} from 'mysql2/promise'
 
-const connection = mysql.createConnection({
+export const pool = createPool({
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'cafeteria',
+    database: 'cafeteria'
 })
 
-export default connection
