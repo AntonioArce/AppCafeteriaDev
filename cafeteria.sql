@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `cafeteria`.`Usuario` (
   `apellido_materno` VARCHAR(45) NOT NULL,
   `num_telefono` VARCHAR(12) NOT NULL,
   `correo` VARCHAR(45) NOT NULL,
-  `contrasena` VARCHAR(45) NOT NULL,
+  `contrasena` VARCHAR(100) NOT NULL,
   `Rol_idRol` INT NOT NULL,
   PRIMARY KEY (`idUsuario`),
   UNIQUE INDEX `correo_UNIQUE` (`correo` ASC) VISIBLE,

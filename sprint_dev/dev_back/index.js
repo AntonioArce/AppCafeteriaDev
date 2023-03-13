@@ -2,6 +2,8 @@ import express from 'express'
 const app = express() 
 const PUERTO = process.env.PORT || 8000
 
+app.use(express.json())
+
 //Routes
 import routerClientes from './routes/clientes/clientes-routes.js'
 app.use('/api/v1/clientes',routerClientes)
