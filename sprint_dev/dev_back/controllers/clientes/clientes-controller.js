@@ -1,4 +1,4 @@
-import { pool } from '../database/database.js'
+import { pool } from '../../database/database.js'
 import bcrypt from 'bcryptjs' 
 
 export const getClientes = async (req,res) => {
@@ -11,7 +11,6 @@ export const postClientes = async (req,res) =>{
     const passCif = await encrypt(req.body["contrasena"])
     const [rows] = await pool.query('call registrarCliente(?,?,?,?,?,?,2)', [nombre, paterno, materno, telefono,correo,passCif])
     res.send({rows})    
-    /* res.send('POST SEND') */
 }
 
 const encrypt = async(textPlain) => {

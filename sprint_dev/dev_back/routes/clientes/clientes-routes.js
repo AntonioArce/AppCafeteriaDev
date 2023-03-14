@@ -1,5 +1,5 @@
 import express from 'express'
-import { getClientes, postClientes } from '../../controllers/clientes-controller.js'
+import { getClientes, postClientes } from '../../controllers/clientes/clientes-controller.js'
 const routerClientes = express.Router()
 
 //Middlewere
