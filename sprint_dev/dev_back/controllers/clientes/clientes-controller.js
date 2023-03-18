@@ -2,18 +2,32 @@ import { pool } from '../../database/database.js'
 import bcrypt from 'bcryptjs' 
 
 export const getClientes = async (req,res) => {
-    const [[rows]] = await pool.query('call consultarClientes(1,2)')
+    const [[rows]] = await pool.query('call consultarClientes(1,0)')
     res.json(rows)
 }
 
+export const getCliente = async (req, res) => {
+    let correo = req.params.id_correo
+    console.log(correo)
+    const [[rows]] = await pool.query('call consultarClientes(2,?)', correo)
+    if(rows.length == 0){
+        res.status(200).json('Este usuario no existe en la base de datos')
+    }
+    else{
+        res.status(200).json(rows)
+    }
+} 
+
 export const postClientes = async (req,res) =>{
-    const {nombre, paterno, materno, telefono, correo} = req.body
-    const passCif = await encrypt(req.body["contrasena"])
-    const [rows] = await pool.query('call registrarCliente(?,?,?,?,?,?,2)', [nombre, paterno, materno, telefono,correo,passCif])
-    res.send({rows})    
+    const {nombre, paterno, materno, telefono, correo, contrasena} = req.body
+    let [confirmacionEmail] = await pool.query('select correo from usuario where correo like ?',correo)
+
+    if(confirmacionEmail.length != 0){
+        res.status(200).json('Este correo ya esta registrado')
+    }
+    else{
+       const [rows] = await pool.query('call registrarCliente(?,?,?,?,?,?,2)', [nombre, paterno, materno, telefono,correo,contrasena])
+       res.status(200).json("Usuario registrado con exito!!!!!!!")
+    }
 }
 
-const encrypt = async(textPlain) => {
-    const hash = await bcrypt.hash(textPlain, 5)
-    return hash
-}
