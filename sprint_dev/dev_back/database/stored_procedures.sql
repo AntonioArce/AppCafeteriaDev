@@ -16,7 +16,7 @@ END //
 
 ###### Consultar todos los clientes o uno solo
 ## EJEMPLO
-call consultarClientes(2,2);
+
 DELIMITER //
 CREATE PROCEDURE consultarClientes(IN opcion INT, IN correo varchar(60))
 BEGIN

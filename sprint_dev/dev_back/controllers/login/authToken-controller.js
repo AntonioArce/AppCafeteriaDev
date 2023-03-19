@@ -1,6 +1,6 @@
 import { pool } from '../../database/database.js'
 import jwt from 'jsonwebtoken'
-import { text } from 'express'
+
 
 export const createToken = async (req, res) =>{
     let user = req.body.user
@@ -12,7 +12,7 @@ export const createToken = async (req, res) =>{
     if(confirmacionContra.length == 0)
         res.status(403).send({message: 'La contraseña es incorrecta'})
     else{
-        jwt.sign({usuario: user}, 'secretkey', (err,token) =>{
+        jwt.sign({user}, 'secretkey', (err,token) =>{
             res.status(200).json({
                 token: token
             })
@@ -20,6 +20,15 @@ export const createToken = async (req, res) =>{
     }
 }
 
-export const verificar = (req,res) =>{
-
+// Authorization: Bearer <token>
+export const verificar = (req,res,next) =>{
+    const bearerHeader = req.headers.authorization
+    if(typeof bearerHeader !== 'undefined'){
+        const bearerToken = bearerHeader.split(" ")[1]
+        req.token = bearerToken
+        next()
+    }
+    else{
+        res.sendStatus(403)
+    }
 }
