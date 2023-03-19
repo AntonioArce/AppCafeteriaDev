@@ -67,13 +67,24 @@ export const patchTrabajador = async (req,res) => {
         const rows  = await pool.query('update usuario set num_telefono = ? where correo = ? ', [req.body.telefono,req.params.id_correo])
         res.status(200).json("Telefono Modificado con exito")
     }
-    else if(req.body.correo){
+    if(req.body.correo){
         const rows  = await pool.query('update usuario set correo = ? where correo = ? ', [req.body.correo,req.params.id_correo])
         res.status(200).json("Correo modificado con exito")
     }
-    else if(req.body.contrasena){
+    if(req.body.contrasena){
         const rows  = await pool.query('update usuario set contrasena = sha2(?,256) where correo = ? ', [req.body.contrasena,req.params.id_correo])
         res.status(200).json("Contraseña modificada con exito")
     }
     
+}
+
+export const deleteTrabajador = async(req,res) =>{
+    jwt.verify(req.token, 'secretkey', (err,authData) => {
+        if(err){
+            console.log(err)
+            res.sendStatus(403)
+        }
+    })
+    await pool.query('update usuario set is_active = 0 where correo = ? and Rol_idRol = 3', req.params.id_correo)
+    res.status(200).json('Usuario Eliminado con exito')
 }
