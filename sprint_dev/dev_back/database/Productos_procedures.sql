@@ -16,4 +16,4 @@ BEGIN
     INNER JOIN tipo_producto tp ON p.Tipo_Producto_idTipo_Producto = tp.idTipo_Producto;  
 END//
 
-
+describe productos;
