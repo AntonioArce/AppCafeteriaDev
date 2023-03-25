@@ -1,7 +1,7 @@
 import { StyleSheet, View } from 'react-native';
-import Main from  './src/components/main.js';
+import Login from  './src/components/login.js';
 
 export default function App() {
-  return (<Main/>)
+  return (<Login/>)
 }
-
+ 
