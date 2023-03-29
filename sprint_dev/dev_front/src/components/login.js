@@ -1,19 +1,42 @@
-import React from "react";
-import { StatusBar } from "expo-status-bar";
+import React, { useState } from "react";
 import { StyleSheet, Text, TextInput, View, Pressable, ImageBackground, TouchableHighlight, Button } from "react-native";
+/* import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack'; */
+import Admin_Menu from "./admin/admin_menu";
 import backgroundImage from '../../assets/background.jpg'
-/* import { getClientes } from "../services/auth.js"; */
-import axios from "axios";
+import { token } from "../services/auth";
+
+
 
 export default function Login(){
+
+    const [userInput, setUserInput] = useState('')
+    const [passInput, setPassInput] = useState('')
+
+    const handleSubmit = () =>{
+        token(userInput,passInput)
+
+    }
+
     return (
         <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
             <View style = {styles.container}>
             <Text style={styles.titulo}>Bienvenido(a)</Text>
             <Text style={styles.subTitle}>Inicia sesion con tu cuenta</Text>
-            <TextInput style={styles.textInput} placeholder="ejemplo@gmail.com"></TextInput>
-            <TextInput style={styles.textInput} placeholder="Contraseña" secureTextEntry={true}></TextInput>
-            <Button title = "Entrar" />
+            <TextInput 
+                style={styles.textInput} 
+                placeholder="ejemplo@gmail.com"
+                value={userInput}
+                onChangeText={text => setUserInput(text)} 
+            />
+            <TextInput 
+                style={styles.textInput} 
+                placeholder="Contraseña" 
+                secureTextEntry={true}
+                value={passInput}
+                onChangeText={text => setPassInput(text)} 
+            />
+            <Button title = "Entrar s" onPress={handleSubmit}/>
         </View>
         </ImageBackground>
     );

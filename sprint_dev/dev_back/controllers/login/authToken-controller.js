@@ -8,7 +8,7 @@ export const createToken = async (req, res) =>{
     let [confirmacionEmail] = await pool.query('select correo from usuario where correo like ?',user)
     let [confirmacionContra] = await pool.query('select contrasena from usuario where contrasena = sha2(?,256)', pass)
     let [[typeuser]] = await pool.query('select Rol_idRol from usuario where correo like ?', user)
-    console.log(user)
+    let rol = typeuser.Rol_idRol
     if(confirmacionEmail.length == 0 )
         res.status(403).send({message: 'No se encontro usuario registrado con este correo'})
     if(confirmacionContra.length == 0)
