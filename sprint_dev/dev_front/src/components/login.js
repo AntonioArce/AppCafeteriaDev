@@ -9,7 +9,6 @@ export default function Login(){
     return (
         <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
             <View style = {styles.container}>
-            <StatusBar barStyle="light-content" />
             <Text style={styles.titulo}>Bienvenido(a)</Text>
             <Text style={styles.subTitle}>Inicia sesion con tu cuenta</Text>
             <TextInput style={styles.textInput} placeholder="ejemplo@gmail.com"></TextInput>

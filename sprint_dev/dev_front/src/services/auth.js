@@ -11,7 +11,7 @@ export const getClientes = () =>{
         console.log(error)
     })
 } 
-axios.get('http://192.168.1.20:8000/api/v1/clientes/joseda@gmail.com').then(Response =>{
+axios.get('http://10.100.128.25:8000/api/v1/clientes/joseda@gmail.com').then(Response =>{
                     console.log(Response.data);
                 })
 */
