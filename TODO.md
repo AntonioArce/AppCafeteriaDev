@@ -4,7 +4,7 @@
 -  [ ] Corregir modulo modificar datos de trabajador a un PUT
 -  [ ] Corregir modulo modificar datos de producto a un PUT
 -  [ ] Modulo Recuperar Contraseña (Administrador y cliente)
--  [ ] Modulo Modificar datos personales de cliente
+-  [x] Modulo Modificar datos personales de cliente
 
 ### Front End
 
