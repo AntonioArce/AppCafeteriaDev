@@ -43,3 +43,10 @@ export const postClientes = async (req,res) =>{
     }
 }
 
+export const putCliente = async (req,res) =>{
+    console.log(req.body.telefono)
+    if(req.body.telefono){
+        const rows = await pool.query('update usuario set num_telefono = ? where correo = ?', [req.body.telefono, req.params.id_correo])
+        res.status(200).json('Telefono del usuario modificado con exito')
+    }
+}
