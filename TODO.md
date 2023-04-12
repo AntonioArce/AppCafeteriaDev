@@ -8,9 +8,9 @@
 
 ### Front End
 
--  [ ] Vistas de inicio de sesion 
+-  [x] Vistas de inicio de sesion 
 -  [ ] Implementacion de local Storage para token
--  [ ] Vistas de registro de usuario (Cliente)
+-  [x] Vistas de registro de usuario (Cliente)
 -  [ ] Vista menu de administrador
 -  [ ] Vista Visualizar Trabajadores (Admin)
 -  [ ] Vista Registrar Trabajador (Admin)
