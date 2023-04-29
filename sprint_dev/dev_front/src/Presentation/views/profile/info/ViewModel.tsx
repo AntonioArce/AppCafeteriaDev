@@ -3,18 +3,14 @@ import { RemoveUserLocalUseCase } from '../../../../Domain/useCases/userLocal/Re
 import { useUserLocal } from '../../../hooks/useUserLocal';
 
 export const ProfileInfoViewModel = () => {
-    const { user, getUserSession } = useUserLocal()
-    const [values, setValues] = useState({
-        nombre: user?.nombre,
-        correo: user?.correo,
-    });
+    const { user } = useUserLocal()
 
     const removeSession = async () =>{
         await RemoveUserLocalUseCase()
     }
     return {
-        ...values,
         removeSession,
+        user
     }
 }
 
