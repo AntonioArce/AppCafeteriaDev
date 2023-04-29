@@ -27,8 +27,8 @@ module.exports = {
             if(isPasswordValid){
                 const token = jwt.sign({id: myUser.id, email: myUser.email}, keys.secretOrKey, {})
                 const data ={
-                    id: myUser.idUsuario,
-                    name: myUser.nombre,
+                    idUsuario: myUser.idUsuario,
+                    nombre: myUser.nombre,
                     correo: myUser.correo,
                     rol: myUser.Rol_idRol,
                     session_token: `JWT ${token}` 

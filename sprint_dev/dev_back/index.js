@@ -18,8 +18,8 @@ app.disable('x-powered-by')
 app.set('port', port)
 
 
-server.listen(3000, '192.168.1.17' || 'localhost', function(){
-    console.log('Server running at http://192.168.1.17:' + port)
+server.listen(3000, '192.168.1.8' || 'localhost', function(){
+    console.log('Server running at http://192.168.1.8:' + port)
 })
 
 // Importar Rutas

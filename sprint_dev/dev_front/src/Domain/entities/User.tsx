@@ -7,5 +7,6 @@ export interface User {
     correo: string;
     contrasena: string;
     confirmPassword: string;
+    rol?: number;
     session_token?: string;
 }

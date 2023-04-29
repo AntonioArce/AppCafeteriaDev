@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, Image, TextInput, Button, Touchable, TouchableOpacity } from 'react-native';
+import { Text, View, Image, TextInput, Button, Touchable, TouchableOpacity,ToastAndroid } from 'react-native';
 import { useNavigation } from '@react-navigation/native'
 import { StackNavigationProp, StackScreenProps } from '@react-navigation/stack';
 import { RoundedButton } from '../../components/RoundedButton'; 
@@ -7,11 +7,27 @@ import { CustomTextInput } from '../../components/CustomTextInput';
 import { RootStackParamList } from '../../../../App';
 import styles from './Styles'
 import useViewModel from './ViewModel'
+import { useEffect } from 'react';
 
 interface Props extends StackScreenProps<RootStackParamList, "HomeScreen">{}
 
 export const HomeScreen = ({navigation, route}:Props) => {
-  const { email, password, errorMessage, /* user, */ onChange/* , login   */} = useViewModel();
+  const { email, password, errorMessage, user, onChange, login } = useViewModel();
+
+  useEffect(() => {
+    if(errorMessage !==  ''){
+      ToastAndroid.show(errorMessage, ToastAndroid.LONG)
+    }
+  }, [errorMessage])
+
+  useEffect(() => {
+    console.log(user?.idUsuario)
+
+    if(user?.idUsuario !== null  && user?.idUsuario !== undefined){
+        navigation.replace('ProfileInfoScreen')
+    }
+}, [user])
+
     return (
         <View style={styles.container}>
           <Image source={require('../../../../assets/fondo.jpg')} style={styles.back}/>
@@ -34,7 +50,7 @@ export const HomeScreen = ({navigation, route}:Props) => {
                     secureTextEntry = {true}
                 />
                 <View style={{marginTop: 30}}>
-                    <RoundedButton text='ENTRAR' onPress={() => console.log("HOLA")}/>
+                    <RoundedButton text='ENTRAR' onPress={() => login()}/>
                     <View style={styles.loginFormLinks}>
                         <Text>¿Olvidaste tu Contraseña?</Text>
                         <TouchableOpacity onPress={ () =>  navigation.navigate('RecoveryScreen')}>
