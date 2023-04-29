@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, Image, TextInput, Button, Touchable, TouchableO
 export const RecoveryScreen = () => {
   return (
     <View style={styles.container}>
-          <Image source={require('../../assets/fondo.jpg')} style={styles.back}/>
+          <Image source={require('../../../../assets/fondo.jpg')} style={styles.back}/>
           <View style={styles.login}>
             <Text style={styles.loginTitle}>Recuperar Contraseña</Text>
             <Text style={styles.textRecovery}>Enviaremos a tu correo, un enlace para que puedas modificar tu contraseña</Text>
