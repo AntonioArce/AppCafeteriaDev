@@ -24,7 +24,15 @@ export const HomeScreen = ({navigation, route}:Props) => {
     console.log(user?.idUsuario)
 
     if(user?.idUsuario !== null  && user?.idUsuario !== undefined){
-        navigation.replace('ProfileInfoScreen')
+      if(user?.rol === 4){ //Es 4 por que se borro la bd y es autoincrementable
+        navigation.replace('AdminTabsNavigator')
+      }
+      /* else if(user?.rol === 5){
+        navigation.replace('')
+      }
+      else if(user?.rol === 6){
+        navigation.replace('WorkScreen')
+      } */
     }
 }, [user])
 

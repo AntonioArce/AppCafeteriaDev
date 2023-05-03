@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `cafeteria`.`usuario` (
     FOREIGN KEY (`Rol_idRol`)
     REFERENCES `cafeteria`.`rol` (`idRol`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 15
+AUTO_INCREMENT = 22
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `cafeteria`.`cliente` (
     FOREIGN KEY (`Usuario_idUsuario`)
     REFERENCES `cafeteria`.`usuario` (`idUsuario`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 9
+AUTO_INCREMENT = 13
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -73,8 +73,9 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- Table `cafeteria`.`tipo_producto`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `cafeteria`.`tipo_producto` (
-  `idTipo_Producto` INT NOT NULL,
+  `idTipo_Producto` INT NOT NULL AUTO_INCREMENT,
   `nombre_tipo` VARCHAR(45) NOT NULL,
+  `descripcion` VARCHAR(200) NULL DEFAULT NULL,
   PRIMARY KEY (`idTipo_Producto`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
@@ -152,7 +153,7 @@ CREATE TABLE IF NOT EXISTS `cafeteria`.`trabajador` (
     FOREIGN KEY (`Usuario_idUsuario`)
     REFERENCES `cafeteria`.`usuario` (`idUsuario`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 6
+AUTO_INCREMENT = 7
 DEFAULT CHARACTER SET = utf8mb3;
 
 USE `cafeteria` ;
@@ -210,6 +211,22 @@ BEGIN
         FROM usuario 
         WHERE Rol_idRol = 3 and correo = email;
 	END IF;
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure registerCliente
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `cafeteria`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `registerCliente`(
+IN nombre VARCHAR(100), IN paterno VARCHAR(100),IN materno VARCHAR(100),
+IN telefono VARCHAR(100),IN email VARCHAR(100),IN contra VARCHAR(100))
+BEGIN
+	INSERT INTO usuario(nombre,apellido_paterno,apellido_materno,num_telefono,correo,contrasena, Rol_idRol, is_active) Values(nombre,paterno,materno,telefono,email,contra,2,1);
+    INSERT INTO cliente(Usuario_idUsuario) VALUES((select idUsuario from usuario where correo like email));
 END$$
 
 DELIMITER ;

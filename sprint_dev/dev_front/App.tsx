@@ -5,13 +5,16 @@ import { HomeScreen } from './src/Presentation/views/Home/Home';
 import { RegisterScreen } from './src/Presentation/views/Register/Register';
 import { RecoveryScreen } from './src/Presentation/views/Recovery/Recovery';
 import { ProfileInfoScreen } from './src/Presentation/views/profile/info/ProfileInfo';
-
+import { WorkScreen } from './src/Presentation/views/profileWork/Work';
+import { AdminTabsNavigator } from './src/Presentation/navigator/AdminTabs.Navigator';
+import { AdminCategoryCreateScreen } from './src/Presentation/views/profileAdmin/category/create/CategoryCreate';
 
 export type RootStackParamList = {
   HomeScreen: undefined,
   RegisterScreen: undefined,
   RecoveryScreen: undefined,
-  ProfileInfoScreen: undefined,
+  AdminTabsNavigator: undefined,
+  AdminCategoryCreateScreen: undefined
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -23,7 +26,8 @@ const App = () => {
         <Stack.Screen name="HomeScreen" component={HomeScreen}/>
         <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
         <Stack.Screen name="RecoveryScreen" component={RecoveryScreen} />
-        <Stack.Screen name="ProfileInfoScreen" component={ProfileInfoScreen}/>
+        <Stack.Screen name="AdminTabsNavigator" component={AdminTabsNavigator}/>
+        <Stack.Screen name="AdminCategoryCreateScreen" component={AdminCategoryCreateScreen} options={{headerShown: true, title: 'Nueva Categoria'}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

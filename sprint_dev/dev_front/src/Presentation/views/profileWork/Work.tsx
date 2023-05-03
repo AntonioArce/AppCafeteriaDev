@@ -1,0 +1,23 @@
+import React from 'react'
+import { View, Text, Button} from 'react-native'
+import useViewModel from './ViewModel'
+import { StackScreenProps } from '@react-navigation/stack'
+import { RootStackParamList } from '../../../../App'
+
+interface Props extends StackScreenProps<RootStackParamList>{}
+
+export const WorkScreen = ({navigation, route}: Props) => {
+  const { removeSession, user } = useViewModel()
+  return (
+    <View style = {{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <Text>Perfil de usuario de trabajador</Text>
+        <Text>Bienvenido {user?.nombre}</Text>
+        <Button
+          onPress={() => {
+            removeSession()
+            navigation.navigate('HomeScreen')
+          }}
+          title='Cerrar Sesion'/>
+    </View>
+  )
+} 

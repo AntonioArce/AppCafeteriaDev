@@ -18,15 +18,17 @@ app.disable('x-powered-by')
 app.set('port', port)
 
 
-server.listen(3000, '192.168.1.8' || 'localhost', function(){
+server.listen(3000, '192.168.1.72' || 'localhost', function(){
     console.log('Server running at http://192.168.1.8:' + port)
 })
 
 // Importar Rutas
 const usersRoutes = require('./routes/userRoutes')
+const categoriesRoutes = require('./routes/categoryRoutes')
 
 // Llamado a las rutas
 usersRoutes(app)
+categoriesRoutes(app)
 
 app.get('/', (req,res) =>{
     res.send('Ruta raiz de la Aplicacion')
