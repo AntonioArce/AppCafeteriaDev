@@ -1,5 +1,5 @@
 export interface Category{
-    id?: string;
-    nombre: string;
+    idTipo_Producto?: string;
+    nombre_tipo: string;
     descripcion: string;
 }

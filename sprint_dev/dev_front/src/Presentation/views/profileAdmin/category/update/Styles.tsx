@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-const CategoryStyle = StyleSheet.create({
+const AdminCategoryUpdateStyle = StyleSheet.create({
     title: {
         marginTop: 20,
         alignItems: 'center',
@@ -25,4 +25,4 @@ const CategoryStyle = StyleSheet.create({
     }
 })
 
-export default CategoryStyle
+export default AdminCategoryUpdateStyle

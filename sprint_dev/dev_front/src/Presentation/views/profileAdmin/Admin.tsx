@@ -32,7 +32,7 @@ export const AdminScreen = () => {
           </View>
           <RoundedButton text='Cerrar Sesion' onPress={() => {
             removeSession()
-              navigation.navigate('HomeScreen')
+              navigation.replace('HomeScreen')
           }}/>
         </View>
     </View>

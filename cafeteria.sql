@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `cafeteria`.`rol` (
   `nombre` VARCHAR(30) NOT NULL,
   PRIMARY KEY (`idRol`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 4
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `cafeteria`.`usuario` (
     FOREIGN KEY (`Rol_idRol`)
     REFERENCES `cafeteria`.`rol` (`idRol`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 22
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -63,9 +63,11 @@ CREATE TABLE IF NOT EXISTS `cafeteria`.`cliente` (
   INDEX `fk_Cliente_Usuario1_idx` (`Usuario_idUsuario` ASC) VISIBLE,
   CONSTRAINT `fk_Cliente_Usuario1`
     FOREIGN KEY (`Usuario_idUsuario`)
-    REFERENCES `cafeteria`.`usuario` (`idUsuario`))
+    REFERENCES `cafeteria`.`usuario` (`idUsuario`)
+    ON DELETE CASCADE
+    )
 ENGINE = InnoDB
-AUTO_INCREMENT = 13
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -97,9 +99,11 @@ CREATE TABLE IF NOT EXISTS `cafeteria`.`productos` (
   INDEX `fk_Productos_Tipo_Producto1_idx` (`Tipo_Producto_idTipo_Producto` ASC) VISIBLE,
   CONSTRAINT `fk_Productos_Tipo_Producto1`
     FOREIGN KEY (`Tipo_Producto_idTipo_Producto`)
-    REFERENCES `cafeteria`.`tipo_producto` (`idTipo_Producto`))
+    REFERENCES `cafeteria`.`tipo_producto` (`idTipo_Producto`)
+    ON DELETE CASCADE
+    )
 ENGINE = InnoDB
-AUTO_INCREMENT = 4
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -151,9 +155,11 @@ CREATE TABLE IF NOT EXISTS `cafeteria`.`trabajador` (
   INDEX `fk_Trabajador_Usuario1_idx` (`Usuario_idUsuario` ASC) VISIBLE,
   CONSTRAINT `fk_Trabajador_Usuario1`
     FOREIGN KEY (`Usuario_idUsuario`)
-    REFERENCES `cafeteria`.`usuario` (`idUsuario`))
+    REFERENCES `cafeteria`.`usuario` (`idUsuario`)
+    ON DELETE CASCADE
+    )
 ENGINE = InnoDB
-AUTO_INCREMENT = 7
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb3;
 
 USE `cafeteria` ;

@@ -24,7 +24,7 @@ export const HomeScreen = ({navigation, route}:Props) => {
     console.log(user?.idUsuario)
 
     if(user?.idUsuario !== null  && user?.idUsuario !== undefined){
-      if(user?.rol === 4){ //Es 4 por que se borro la bd y es autoincrementable
+      if(user?.rol === 1){ 
         navigation.replace('AdminTabsNavigator')
       }
       /* else if(user?.rol === 5){
