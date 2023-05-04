@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native'
 import { StackNavigationProp, StackScreenProps } from '@react-navigation/stack';
 import { RoundedButton } from '../../components/RoundedButton'; 
 import { CustomTextInput } from '../../components/CustomTextInput';
-import { RootStackParamList } from '../../../../App';
+import { RootStackParamList } from '../../navigator/MainStackNavigator';
 import styles from './Styles'
 import useViewModel from './ViewModel'
 import { useEffect } from 'react';

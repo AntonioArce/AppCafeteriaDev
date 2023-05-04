@@ -6,7 +6,7 @@ import useViewModel from './ViewModel'
 import Style from './Styles'
 
 export const AdminCategoryCreateScreen = () => {
-    const { nombre, descripcion, onChange, errorMessage, create, success } = useViewModel()
+    const { nombre_tipo, descripcion, onChange, errorMessage, createCategory, success } = useViewModel()
     useEffect(() => {
         if(errorMessage !== ''){
             ToastAndroid.show(errorMessage,ToastAndroid.LONG)
@@ -30,9 +30,9 @@ export const AdminCategoryCreateScreen = () => {
                 <CustomTextInput 
                     placeholder = 'Nombre de la categoria'
                     keyboardType='default'
-                    property='nombre'
+                    property='nombre_tipo'
                     onChangeText = { onChange }
-                    value = {nombre}
+                    value = {nombre_tipo}
                     />
                 <Text style={{marginTop: 5}}>Descripcion de la categoria</Text>
                 <CustomTextInput 
@@ -44,7 +44,7 @@ export const AdminCategoryCreateScreen = () => {
                     />
             </View>
             <View style= {Style.boton}>
-                <RoundedButton text='Registrar Categoria' onPress={ () => create() }/>
+                <RoundedButton text='Registrar Categoria' onPress={ () => createCategory() }/>
             </View>
         </View>
 

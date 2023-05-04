@@ -1,13 +1,16 @@
-import React,{useState} from 'react'
+import React,{useState, useContext} from 'react'
 import { CreateCategoryUseCase } from '../../../../../Domain/useCases/Category/CreateCategoryUseCase';
+import { CategoryContext } from '../../../../context/CategoryContext';
 
 const AdminCategoryCreateViewModel = () => {
     const [errorMessage, setErrorMessage] = useState('')
     const [success, setSuccess] = useState('')
     const [values, setValues] = useState({
-        nombre: '',
+        nombre_tipo: '',
         descripcion: '',
     });
+
+    const { create } = useContext(CategoryContext)
 
     const onChange = (property: string, value: any) => {
         setValues({ ...values, [property]: value});
@@ -15,13 +18,14 @@ const AdminCategoryCreateViewModel = () => {
 
     const resetForm = async () => {
         setValues({
-            nombre: '',
+            nombre_tipo: '',
             descripcion: '',
         })
     }
 
-    const create = async () =>{
-        const response = await CreateCategoryUseCase(values)
+    const createCategory = async () =>{
+        console.log(values.nombre_tipo)
+        const response = await create(values)
         if(isValidForm()){
             if(response.success){
                 setSuccess('Categoria creada con exito')
@@ -32,7 +36,7 @@ const AdminCategoryCreateViewModel = () => {
     }
 
     const isValidForm = (): boolean => {
-        if(values.nombre === ''){
+        if(values.nombre_tipo === ''){
             setErrorMessage('Ingresa el nombre de la categoria')
             return false
         }
@@ -48,7 +52,7 @@ const AdminCategoryCreateViewModel = () => {
         ...values,
         onChange,
         errorMessage,
-        create,
+        createCategory,
         success
     }
 }

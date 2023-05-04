@@ -1,19 +1,21 @@
-import React,{useState} from 'react'
+import React,{useState, useContext} from 'react'
 import { CreateCategoryUseCase } from '../../../../../Domain/useCases/Category/CreateCategoryUseCase';
 import { Category } from '../../../../../Domain/entities/Category';
 import { UpdateCategoryUseCase } from '../../../../../Domain/useCases/Category/UpdateCategory';
+import { CategoryContext } from '../../../../context/CategoryContext';
 
 const AdminCategoryUpdateViewModel = (category: Category) => {
     const [errorMessage, setErrorMessage] = useState('')
     const [success, setSuccess] = useState('')
     const [values, setValues] = useState(category);
+    const { update } = useContext(CategoryContext)
 
     const onChange = (property: string, value: any) => {
         setValues({ ...values, [property]: value});
     }
 
-    const update = async () => {
-        const response = await UpdateCategoryUseCase(values)
+    const updateCategory = async () => {
+        const response = await update(values)
         if(isValidForm()){
             if(response.success){
                 setSuccess('Categoria actualizada con exito')
@@ -40,7 +42,7 @@ const AdminCategoryUpdateViewModel = (category: Category) => {
         onChange,
         errorMessage,
         success,
-        update
+        updateCategory
     }
 }
 

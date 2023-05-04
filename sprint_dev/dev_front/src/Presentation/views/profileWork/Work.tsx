@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Text, Button} from 'react-native'
 import useViewModel from './ViewModel'
 import { StackScreenProps } from '@react-navigation/stack'
-import { RootStackParamList } from '../../../../App'
+import { RootStackParamList } from '../../navigator/MainStackNavigator'
 
 interface Props extends StackScreenProps<RootStackParamList>{}
 

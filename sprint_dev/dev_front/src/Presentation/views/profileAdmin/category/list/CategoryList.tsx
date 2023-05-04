@@ -5,9 +5,7 @@ import { AdminCategoryListItem } from './Item'
 
 export const AdminCategoryList = () => {
   const { categories, getCategories, deleteCategory, responseMessage } = useViewModel()
-  useEffect(() => {
-    getCategories()
-  }, [])
+
   useEffect(() => {
     if(responseMessage !== ''){
       ToastAndroid.show(responseMessage, ToastAndroid.LONG)

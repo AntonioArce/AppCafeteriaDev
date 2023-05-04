@@ -3,15 +3,15 @@ import { View, Text, Image, TextInput, ToastAndroid } from 'react-native'
 import { CustomTextInput } from '../../../../components/CustomTextInput'
 import { RoundedButton } from '../../../../components/RoundedButton'
 import { StackScreenProps } from '@react-navigation/stack'
-import { RootStackParamList } from '../../../../../../App'
+import { CategoryStackParamList } from '../../../../navigator/AdminCategoryNavigator'
 import useViewModel from './ViewModel'
 import Style from './Styles'
 
-interface Props extends StackScreenProps<RootStackParamList, 'AdminCategoryUpdateScreen'>{}
+interface Props extends StackScreenProps<CategoryStackParamList, 'AdminCategoryUpdateScreen'>{}
 
 export const AdminCategoryUpdateScreen = ({navigation, route}: Props) => {
     const {category} = route.params
-    const { nombre_tipo, descripcion, onChange, errorMessage, update, success } = useViewModel(category)
+    const { nombre_tipo, descripcion, onChange, errorMessage, updateCategory, success } = useViewModel(category)
     useEffect(() => {
         if(errorMessage !== ''){
             ToastAndroid.show(errorMessage,ToastAndroid.LONG)
@@ -49,7 +49,7 @@ export const AdminCategoryUpdateScreen = ({navigation, route}: Props) => {
                     />
             </View>
             <View style= {Style.boton}>
-                <RoundedButton text='Modificar' onPress={ () => update() }/>
+                <RoundedButton text='Modificar' onPress={ () => updateCategory() }/>
             </View>
         </View>
 

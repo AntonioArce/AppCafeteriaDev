@@ -4,30 +4,25 @@ import { AdminCategoryList } from '../views/profileAdmin/category/list/CategoryL
 import { AdminScreen } from '../views/profileAdmin/Admin';
 import { AdminEmployeeList } from '../views/profileAdmin/employee/list/EmployeeList';
 import { AdminProductList } from '../views/profileAdmin/products/list/ProductList';
+import { AdminCategoryNavigator } from './AdminCategoryNavigator';
 
 const Tab = createBottomTabNavigator();
 
 export const AdminTabsNavigator = () => {
   return (
-    <Tab.Navigator>
-        <Tab.Screen name="AdminCategoryList" component={ AdminCategoryList }
-            options ={ ({route, navigation}) =>( 
-                {
-                    title: 'Categorias',
-                    tabBarLabel: 'Categorias',
-                    tabBarIcon: ({ color }) => (
-                        <Image source={require('../../../assets/category.png')} style={{width: 25, height: 25}}/>
-                    ),
-                    headerRight: () =>(
-                        <TouchableOpacity onPress={() => navigation.navigate('AdminCategoryCreateScreen')}>
-                            <Image source={require('../../../assets/add.png')} style={{width: 25, height: 25, marginRight: 15}}/>
-                        </TouchableOpacity>
-                    )
-                }
-            )}
+    <Tab.Navigator screenOptions={{headerShown: false}}>
+        <Tab.Screen name="AdminCategoryNavigator" component={ AdminCategoryNavigator }
+            options={{tabBarIcon: () => (
+                <Image
+                  source={ require('../../../assets/category.png') }
+                  style={{ width: 25, height: 25 }}
+                  />
+              ),
+            }}
         />
         <Tab.Screen name="AdminEmployeeList" component={ AdminEmployeeList } 
             options ={{
+                headerShown: true,
                 title: 'Empleados',
                 tabBarLabel: 'Empleados',
                 tabBarIcon: ({ color }) => (
@@ -37,6 +32,7 @@ export const AdminTabsNavigator = () => {
         />
         <Tab.Screen name="AdminProductList" component={ AdminProductList } 
             options ={{
+                headerShown: true,
                 title: 'Productos',
                 tabBarLabel: 'Productos',
                 tabBarIcon: ({ color }) => (
@@ -46,6 +42,7 @@ export const AdminTabsNavigator = () => {
         />
         <Tab.Screen name="AdminScreen" component={ AdminScreen }
             options ={{
+                headerShown: true,
                 title: 'Perfil de usuario',
                 tabBarLabel: 'Perfil de usuario',
                 tabBarIcon: ({ color }) => (

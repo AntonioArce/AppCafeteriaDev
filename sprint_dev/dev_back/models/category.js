@@ -21,7 +21,7 @@ Category.create = (category, result) => {
     const sql = `INSERT INTO tipo_producto(nombre_tipo, descripcion) VALUES(?,?)`
 
     db.query(
-        sql,[category.nombre, category.descripcion],
+        sql,[category.nombre_tipo, category.descripcion],
         (err, res) => {
             if (err) {
                 console.log("Error: ", err)
