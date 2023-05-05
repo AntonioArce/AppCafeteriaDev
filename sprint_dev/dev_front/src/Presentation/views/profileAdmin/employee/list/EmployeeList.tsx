@@ -1,9 +1,25 @@
 import React from 'react'
-import { View, Text } from 'react-native'
-export const AdminEmployeeList = () => {
+import { View, Text, FlatList, ToastAndroid } from 'react-native'
+import useViewModel from './ViewModel'
+import { AdminEmployeeListItem } from './Item'
+import { useEffect } from 'react';
+
+export const AdminEmployeeListScreen = () => {
+  const { employee, responseMessage, getEmployees, create } = useViewModel()
+
+  useEffect(() => {
+    if(responseMessage !== ''){
+      ToastAndroid.show(responseMessage, ToastAndroid.LONG)
+    }
+  }, [responseMessage])
+
   return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>Lista de empleados</Text>
+    <View  style={{backgroundColor: 'white'}}>
+      <FlatList
+        data={employee}
+        keyExtractor={ (item) => item.idUsuario! }
+        renderItem={({ item }) => <AdminEmployeeListItem trabajador={item} />}
+      />
     </View>
   )
 }
