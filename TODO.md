@@ -9,13 +9,17 @@
 ### Front End
 
 -  [x] Vistas de inicio de sesion 
--  [ ] Implementacion de local Storage para token
+-  [x] Implementacion de local Storage para token
 -  [x] Vistas de registro de usuario (Cliente)
--  [ ] Vista menu de administrador
--  [ ] Vista Visualizar Trabajadores (Admin)
--  [ ] Vista Registrar Trabajador (Admin)
+-  [x] Vista menu de administrador
+-  [x] Vista Visualizar Trabajadores (Admin)
+-  [x] Vista Registrar Trabajador (Admin)
 -  [ ] Vista Modificar datos de Trabajador (Admin)
 -  [ ] Vista Visualizar Productos (Admin)
 -  [ ] Vista Registrar Productos (Admin)
 -  [ ] Vista Modificar datos de productos (Admin)
+-  [x] Vista Visualizar Categorias (Admin)
+-  [x] Vista Registrar Categorias (Admin)
+-  [x] Vista Modificar datos de categorias (Admin)
+-  [x] Eliminar categorias desde front (Admin)
 
