@@ -4,10 +4,13 @@ import { Image, Text, TouchableOpacity, View } from 'react-native'
 import { AdminEmployeeProvider } from '../context/AdminEmployeeContext';
 import { AdminEmployeeListScreen } from '../views/profileAdmin/employee/list/EmployeeList';
 import { AdminEmployeeCreateScreen } from '../views/profileAdmin/employee/create/EmployeeCreate';
+import { AdminEmployeeUpdateScreen } from '../views/profileAdmin/employee/update/EmployeeUpdate';
+import { User } from '../../Domain/entities/User';
 
 export type EmployeeStackParamList = {
   AdminEmployeeListScreen: undefined,
-  AdminEmployeeCreateScreen: undefined
+  AdminEmployeeCreateScreen: undefined,
+  AdminEmployeeUpdateScreen: {user: User}
 }
 
 const Stack = createNativeStackNavigator<EmployeeStackParamList>();
@@ -33,7 +36,7 @@ export const AdminEmployeeNavigator = () => {
           )}
         />
         <Stack.Screen name="AdminEmployeeCreateScreen" component={AdminEmployeeCreateScreen} options={{headerShown: true, title: 'Nuevo Empleado'}}/>
-        
+        <Stack.Screen name="AdminEmployeeUpdateScreen" component={AdminEmployeeUpdateScreen} options={{headerShown: true, title: 'Editar Empleado'}}/>
       </Stack.Navigator>
     </EmployeeState>
   )

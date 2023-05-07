@@ -1,7 +1,5 @@
-import React,{useState, useContext} from 'react'
-import { CreateCategoryUseCase } from '../../../../../Domain/useCases/Category/CreateCategoryUseCase';
+import {useState, useContext} from 'react'
 import { Category } from '../../../../../Domain/entities/Category';
-import { UpdateCategoryUseCase } from '../../../../../Domain/useCases/Category/UpdateCategory';
 import { CategoryContext } from '../../../../context/CategoryContext';
 
 const AdminCategoryUpdateViewModel = (category: Category) => {

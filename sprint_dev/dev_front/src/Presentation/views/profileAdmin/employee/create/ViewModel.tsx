@@ -66,7 +66,7 @@ const AdminEmployeeCreateViewModel = () =>{
             setErrorMessage('Ingresa la contraseña de la categoria')
             return false
         }
-        if(values.confirmPassword!== values.contrasena){
+        if(values.confirmPassword !== values.contrasena){
             setErrorMessage('Las contraseñas no coinciden')
             return false
         }

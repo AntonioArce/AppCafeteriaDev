@@ -1,7 +1,7 @@
 # Cosas por hacer
 
 ### Back End
--  [ ] Corregir modulo modificar datos de trabajador a un PUT
+-  [x] Corregir modulo modificar datos de trabajador a un PUT
 -  [ ] Corregir modulo modificar datos de producto a un PUT
 -  [ ] Modulo Recuperar Contraseña (Administrador y cliente)
 -  [x] Modulo Modificar datos personales de cliente
@@ -14,9 +14,11 @@
 -  [x] Vista menu de administrador
 -  [x] Vista Visualizar Trabajadores (Admin)
 -  [x] Vista Registrar Trabajador (Admin)
--  [ ] Vista Modificar datos de Trabajador (Admin)
+-  [x] Vista Modificar Trabajador (Admin)
+-  [x] Eliminar trabajador en aplicacion (admin)
 -  [ ] Vista Visualizar Productos (Admin)
 -  [ ] Vista Registrar Productos (Admin)
+-  [ ] Eliminar Producto desde aplicacion (Admin) 
 -  [ ] Vista Modificar datos de productos (Admin)
 -  [x] Vista Visualizar Categorias (Admin)
 -  [x] Vista Registrar Categorias (Admin)

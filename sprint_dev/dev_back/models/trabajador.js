@@ -42,5 +42,50 @@ Trabajador.getAll = (result) => {
 }
 
 
+Trabajador.update = (employee, result) =>{
+    const sql = `UPDATE usuario 
+        SET nombre = ?,
+        apellido_paterno =?,
+        apellido_materno =?,
+        num_telefono =?,
+        correo =? 
+        WHERE idUsuario = ? and 
+        Rol_idRol = 3`
+    db.query(sql, [
+            employee.nombre,
+            employee.apellido_paterno,
+            employee.apellido_materno,
+            employee.num_telefono,
+            employee.correo,
+            employee.idUsuario
+        ],
+        (err, res) => {
+            if (err) {
+                console.log("Error: ", err)
+                result(err,null)
+            }
+            else{
+                console.log('Usuario trabajador modificado: ', employee.idUsuario)
+                result(null, employee.idUsuario)
+            }
+        }
+
+    )
+}
+
+Trabajador.delete = (id, result) =>{
+    const sql = `DELETE FROM usuario WHERE idUsuario =? and Rol_idRol = 3`
+    db.query(sql, [id], (err, res) => {
+        if (err) {
+            console.log("Error: ", err)
+            result(err,null)
+        }
+        else{
+            console.log('Usuario trabajador eliminado: ', id)
+            result(null, id)
+        }
+    })
+}
+
 
 module.exports = Trabajador 

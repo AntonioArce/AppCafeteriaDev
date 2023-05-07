@@ -4,6 +4,6 @@ import { User } from "../entities/User";
 export interface AdminEmployeeRepository{
     getAll(): Promise<User[]>;
     create(user: User): Promise<ResponseApiDelivery>
-/*     update(category: Category): Promise<ResponseApiDelivery>
-    remove(id: string): Promise<ResponseApiDelivery> */
+    update(user: User): Promise<ResponseApiDelivery>
+    remove(id: string): Promise<ResponseApiDelivery>
 }

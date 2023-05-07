@@ -5,7 +5,7 @@ import { AdminEmployeeListItem } from './Item'
 import { useEffect } from 'react';
 
 export const AdminEmployeeListScreen = () => {
-  const { employee, responseMessage, getEmployees, create } = useViewModel()
+  const { employee, responseMessage, deleteEmployee} = useViewModel()
 
   useEffect(() => {
     if(responseMessage !== ''){
@@ -18,7 +18,7 @@ export const AdminEmployeeListScreen = () => {
       <FlatList
         data={employee}
         keyExtractor={ (item) => item.idUsuario! }
-        renderItem={({ item }) => <AdminEmployeeListItem trabajador={item} />}
+        renderItem={({ item }) => <AdminEmployeeListItem trabajador={item} remove={deleteEmployee}/>}
       />
     </View>
   )

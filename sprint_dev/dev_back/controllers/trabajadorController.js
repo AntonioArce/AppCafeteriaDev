@@ -31,5 +31,39 @@ module.exports = {
                 return res.status(200).json(data)
             }
         })
+    },
+    async update(req,res){
+        const employee = req.body
+        Trabajador.update(employee, (err,idUsuario) =>{
+            if(err){
+                return res.status(501).json({
+                    success: false,
+                    message: 'Error updating employee',
+                    error: err
+                })
+            }
+            return res.status(201).json({
+                success: true,
+                message: 'Employee updated successfully',
+                data: `${idUsuario}`
+            })
+        })
+    },
+    async delete(req,res){
+        const id = req.params.id
+        Trabajador.delete(id, (err,data) =>{
+            if(err){
+                return res.status(501).json({
+                    success: false,
+                    message: 'Error deleting employee',
+                    error: err
+                })
+            }
+            return res.status(200).json({
+                success: true,
+                message: 'Employee deleted successfully',
+                data: `${id}`
+            })
+        })
     }
 }
