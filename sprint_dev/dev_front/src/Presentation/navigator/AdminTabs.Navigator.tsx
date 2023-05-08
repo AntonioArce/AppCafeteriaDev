@@ -2,7 +2,6 @@ import { Image, TouchableOpacity } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { AdminCategoryList } from '../views/profileAdmin/category/list/CategoryList';
 import { AdminScreen } from '../views/profileAdmin/Admin';
-import { AdminProductList } from '../views/profileAdmin/products/list/ProductList';
 import { AdminCategoryNavigator } from './AdminCategoryNavigator';
 import { AdminEmployeeNavigator } from './AdminEmployeeNavigator';
 
@@ -28,16 +27,6 @@ export const AdminTabsNavigator = () => {
                 tabBarLabel: 'Empleados',
                 tabBarIcon: ({ color }) => (
                     <Image source={require('../../../assets/employee.png')} style={{width: 25, height: 25}}/>
-                )
-            }}
-        />
-        <Tab.Screen name="AdminProductList" component={ AdminProductList } 
-            options ={{
-                headerShown: true,
-                title: 'Productos',
-                tabBarLabel: 'Productos',
-                tabBarIcon: ({ color }) => (
-                    <Image source={require('../../../assets/eat.png')} style={{width: 25, height: 25}}/>
                 )
             }}
         />

@@ -4,6 +4,7 @@ const http = require('http')
 const server = http.createServer(app)
 const logger = require('morgan')
 const cors = require('cors')
+const multer = require('multer')
 
 const port = process.env.PORT || 3000
 
@@ -17,8 +18,12 @@ app.use(cors())
 app.disable('x-powered-by')
 app.set('port', port)
 
+const upload = multer({
+    storage: multer.memoryStorage()
+})
 
-server.listen(3000, '192.168.1.16' || 'localhost', function(){
+
+server.listen(3000, '192.168.1.72' || 'localhost', function(){
     console.log('Server running at http://192.168.1.16:' + port)
 })
 
@@ -26,11 +31,13 @@ server.listen(3000, '192.168.1.16' || 'localhost', function(){
 const usersRoutes = require('./routes/userRoutes')
 const categoriesRoutes = require('./routes/categoryRoutes')
 const trabajadoresRoutes = require('./routes/trabajadorRoutes')
+const productsRoutes = require('./routes/productosRoutes')
 
 // Llamado a las rutas
 usersRoutes(app)
 categoriesRoutes(app)
 trabajadoresRoutes(app)
+productsRoutes(app, upload)
 
 app.get('/', (req,res) =>{
     res.send('Ruta raiz de la Aplicacion')

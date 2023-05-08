@@ -14,7 +14,9 @@ interface Props{
 export const AdminCategoryListItem = ({category, remove}: Props) => {
     const navigation = useNavigation<StackNavigationProp<CategoryStackParamList>>()
   return (
-    <TouchableOpacity>
+    <TouchableOpacity 
+        onPress={() => navigation.navigate('AdminProductNavigator', {category: category})}
+    >
         <ScrollView>
             <View style= {styles.container}>
                 <Image style={styles.image} source={require('../../../../../../assets/comida.jpg')}/>
