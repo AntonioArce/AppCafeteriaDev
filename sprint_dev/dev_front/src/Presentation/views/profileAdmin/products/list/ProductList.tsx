@@ -9,7 +9,7 @@ import { AdminProductListItem } from './Item'
 interface Props extends StackScreenProps<ProductStackParamList, 'AdminProductListScreen'>{}
 export const AdminProductListScreen = ({navigation, route}: Props) => {
   const { category } = route.params
-  const { products, responseMessage, getProducts} = useViewModel();
+  const { products, responseMessage, getProducts, deleteProduct} = useViewModel();
 
   useEffect(() => {
     if (category.idTipo_Producto !== undefined) {
@@ -23,7 +23,7 @@ export const AdminProductListScreen = ({navigation, route}: Props) => {
           <FlatList
             data={ products }
             keyExtractor={(item) => item.idProductos!}
-            renderItem={ ({item}) => <AdminProductListItem product={item} /* remove={ deleteProduct }*/  category={ category } /> }
+            renderItem={ ({item}) => <AdminProductListItem product={item} remove={ deleteProduct }  category={ category } /> }
             />
     </View>
   )

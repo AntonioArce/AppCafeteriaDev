@@ -44,7 +44,66 @@ module.exports = {
                 data: data
             })
         })
+    },
+    async updateWhitImage(req, res){
+        const producto = JSON.parse(req.body.product)
+        const files = req.files
 
+        if(files.length > 0){
+            const path = `image_${Date.now()}`
+            const url = await storage(files[0], path)
+            if(url != undefined && url != null){
+                producto.imagen = url
+            }
+        }
 
+        Productos.update(producto, (err, data) =>{
+            if(err){
+                return res.status(501).json({
+                    success: false,
+                    message: 'Hubo un error al modificar producto',
+                    error: err
+                })
+            }
+            return res.status(201).json({
+                success: true,
+                message: 'Producto modificado correctamente',
+                data: data
+            })
+        })
+    },
+    async update(req, res){
+        const product = req.body
+        Productos.update(product, (err, data) =>{
+            if(err){
+                return res.status(501).json({
+                    success: false,
+                    message: 'Hubo un error al modificar producto',
+                    error: err
+                })
+            }
+            return res.status(201).json({
+                success: true,
+                message: 'Producto se actualizo correctamente',
+                data: data
+            })
+        })
+    },
+    async delete(req,res){
+        id = req.params.id
+        Productos.delete(id, (err,id)=>{
+            if(err){
+                return res.status(501).json({
+                    success: false,
+                    message: 'Error deleting products',
+                    error: err
+                })
+            }
+            return res.status(201).json({
+                success: true,
+                message: 'Producto eliminado correctamente',
+                data: `${id}`
+            }) 
+        })
     }
 }

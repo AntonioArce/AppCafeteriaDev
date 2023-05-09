@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { CategoryRepositoryImpl } from '../../../Data/repositories/CategoryRepository'
 import { Category } from '../../entities/Category'
 const { remove } = new CategoryRepositoryImpl() 

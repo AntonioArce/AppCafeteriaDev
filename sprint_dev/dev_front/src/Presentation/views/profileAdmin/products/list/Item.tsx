@@ -10,11 +10,11 @@ import { ProductStackParamList } from '../../../../navigator/AdminProductNavigat
 interface Props{ 
     product: Product;
     category: Category;
-    /* remove: (id: string) => void; */
+    remove: (product: Product) => void;
 }
 
-export const AdminProductListItem = ({product, category}: Props) =>{
-    const navigation = useNavigation<StackNavigationProp<ProductStackParamList>>
+export const AdminProductListItem = ({product, category, remove}: Props) =>{
+    const navigation = useNavigation<StackNavigationProp<ProductStackParamList>>()
     return (
         <ScrollView>
             <View style={styles.container}>
@@ -25,6 +25,15 @@ export const AdminProductListItem = ({product, category}: Props) =>{
                 <Text style={styles.title}>{ product.nombre }</Text>
                 <Text style={styles.description}>{ product.descripcion }</Text>
                 <Text style={styles.price}>${ product.precio }</Text>
+                <Text style={styles.price}> Stock:{ product.stock }</Text>
+            </View>
+            <View style= {styles.actionContainer}>
+                <TouchableOpacity onPress={() => navigation.navigate('AdminProductUpdateScreen', {product: product, category: category})}>
+                    <Image style={ styles.actionimage } source={ require('../../../../../../assets/editar.png')}/>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => remove(product)}>
+                    <Image style={ styles.actionimage } source={ require('../../../../../../assets/eliminar.png')}/>
+                </TouchableOpacity>
             </View>
         </ScrollView>
     )

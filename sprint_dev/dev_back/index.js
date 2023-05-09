@@ -23,7 +23,7 @@ const upload = multer({
 })
 
 
-server.listen(3000, '192.168.1.72' || 'localhost', function(){
+server.listen(3000, '192.168.1.10' || 'localhost', function(){
     console.log('Server running at http://192.168.1.16:' + port)
 })
 
