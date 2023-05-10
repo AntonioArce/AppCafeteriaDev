@@ -26,12 +26,13 @@ User.findById = (id, result) =>{
 
 User.findByEmail = (correo, result) =>{
     const sql = `SELECT 
-    idUsuario,
-    nombre,
-    correo,
-    contrasena,
-    Rol_idRol
-    FROM usuario WHERE correo = ?`
+        idUsuario, 
+        nombre, apellido_paterno, apellido_materno,
+        num_telefono,
+        correo,
+        contrasena,
+        Rol_idRol 
+        FROM usuario WHERE correo = ?`
 
 
     db.query(sql, [correo], (err, user) => {
@@ -70,6 +71,30 @@ User.create = async (user, result) => {
             }
         }
     )
+}
+
+User.update = (user, result) =>{
+    const sql = `UPDATE usuario 
+        SET nombre = ?, apellido_paterno = ?, apellido_materno = ?, num_telefono = ?, correo = ? WHERE idUsuario = ?`
+        
+    db.query(sql, [
+        user.nombre,
+        user.apellido_paterno,
+        user.apellido_materno,
+        user.num_telefono,
+        user.correo,
+        user.idUsuario
+    ],
+    (err, res) => {
+        if (err) {
+            console.log('Error: '+err)
+            result(err, null)
+        }
+        else{
+            console.log('Usuario Actualizado: '+ user.idUsuario)
+            result(null, user.idUsuario)
+        }
+    })
 }
 
 module.exports = User

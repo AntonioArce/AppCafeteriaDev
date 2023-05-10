@@ -23,14 +23,15 @@ export const HomeScreen = ({navigation, route}:Props) => {
   useEffect(() => {
     console.log(user?.idUsuario)
 
-    if(user?.idUsuario !== null  && user?.idUsuario !== undefined){
+    if(user?.idUsuario !== null  && user?.idUsuario !== undefined && user?.idUsuario !== ''){
       if(user?.rol === 1){ 
         navigation.replace('AdminTabsNavigator')
       }
-      /* else if(user?.rol === 5){
-        navigation.replace('')
+      else if(user?.rol === 2){
+        navigation.replace('ClientTabsNavigator')
       }
-      else if(user?.rol === 6){
+      /* 
+      else if(user?.rol === 3){
         navigation.replace('WorkScreen')
       } */
     }

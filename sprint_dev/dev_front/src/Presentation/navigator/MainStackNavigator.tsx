@@ -3,10 +3,12 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { HomeScreen } from '../../../src/Presentation/views/Home/Home';
 import { RegisterScreen } from '../../../src/Presentation/views/Register/Register';
 import { RecoveryScreen } from '../../../src/Presentation/views/Recovery/Recovery';
-import { ProfileInfoScreen } from '../../../src/Presentation/views/profile/info/ProfileInfo';
 import { WorkScreen } from '../../../src/Presentation/views/profileWork/Work';
 import { AdminTabsNavigator } from '../../../src/Presentation/navigator/AdminTabs.Navigator';
-
+import { ClientTabsNavigator } from './ClientTabsNavigator';
+import { User } from '../../Domain/entities/User';
+import { ProfileUpdateScreen } from '../views/profile/update/ProfileUpdate';
+import { UserProvider } from '../context/UserContext';
 
 
 export type RootStackParamList = {
@@ -14,17 +16,36 @@ export type RootStackParamList = {
     RegisterScreen: undefined,
     RecoveryScreen: undefined,
     AdminTabsNavigator: undefined,
+    ClientTabsNavigator: undefined,
+    ProfileUpdateScreen: {user: User}
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export const MainStackNavigator = () => {
   return (
-    <Stack.Navigator screenOptions={{headerShown: false}}>
-        <Stack.Screen name="HomeScreen" component={HomeScreen}/>
-        <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
-        <Stack.Screen name="RecoveryScreen" component={RecoveryScreen} />
-        <Stack.Screen name="AdminTabsNavigator" component={AdminTabsNavigator}/>
-      </Stack.Navigator>
+    <UserState>
+        <Stack.Navigator screenOptions={{headerShown: false}}>
+            <Stack.Screen name="HomeScreen" component={HomeScreen}/>
+            <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
+            <Stack.Screen name="RecoveryScreen" component={RecoveryScreen} />
+            <Stack.Screen name="AdminTabsNavigator" component={AdminTabsNavigator}/>
+            <Stack.Screen name="ClientTabsNavigator" component={ClientTabsNavigator}/>
+            <Stack.Screen name="ProfileUpdateScreen" component={ProfileUpdateScreen}
+                  options={{
+                    headerShown: true,
+                    title: 'Actualizar datos'
+                  }}
+                  />
+          </Stack.Navigator>
+      </UserState>
+  )
+}
+
+const UserState = ({children}: any) => {
+  return (
+    <UserProvider>
+      { children }
+    </UserProvider>
   )
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { View, Text, Button, Image} from 'react-native'
 import useViewModel from './ViewModel'
 import { useNavigation } from '@react-navigation/native'
@@ -11,14 +11,21 @@ interface Props extends StackScreenProps<RootStackParamList>{}
 
 export const AdminScreen = () => {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>()
-  const { removeSession, user } = useViewModel()
+  const { removeUserSession, user } = useViewModel()
+
+  useEffect(() => {
+    if(user.idUsuario === ''){
+      navigation.navigate('HomeScreen');
+    }
+  }, [user])
+
   return (
     <View style = {styles.container}>
         <View style={ styles.info }>
           <View style={ styles.body }>
             <Image source={require('../../../../assets/profileadmin.png')} style={ styles.images }/>
             <Text style={ styles.text } >Nombre: </Text>
-            <Text style={ styles.text }>{user?.nombre}</Text>
+            <Text style={ styles.text }>{user?.nombre} {user?.apellido_paterno} {user?.apellido_materno}</Text>
           </View>
           <View style={ styles.body }>
             <Image source={require('../../../../assets/email.png')} style={ styles.images }/>
@@ -28,11 +35,10 @@ export const AdminScreen = () => {
           <View style={styles.body }>
             <Image source={require('../../../../assets/telefono.png')} style={ styles.images }/>
             <Text style={ styles.text }>Telefono: </Text>
-            {/* <Text>{user?.correo}</Text> */} 
+            <Text>{user?.num_telefono}</Text>  
           </View>
           <RoundedButton text='Cerrar Sesion' onPress={() => {
-            removeSession()
-              navigation.replace('HomeScreen')
+              removeUserSession()
           }}/>
         </View>
     </View>

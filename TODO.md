@@ -4,7 +4,7 @@
 -  [x] Corregir modulo modificar datos de trabajador a un PUT
 -  [x] Corregir modulo modificar datos de producto a un PUT
 -  [ ] Modulo Recuperar Contraseña (Administrador y cliente)
--  [ ] Modulo Modificar datos personales de cliente
+-  [x] Modulo Modificar datos personales de cliente
 -  [ ] Modulo de modificacion de datos de cliente
 -  [ ] Modulo de paypal para pagar compra
 -  [ ] Modulo de trabajador para recibir solicitud de compra
@@ -27,7 +27,9 @@
 -  [x] Vista Registrar Categorias (Admin)
 -  [x] Vista Modificar datos de categorias (Admin)
 -  [x] Eliminar categorias desde front (Admin)
--  [ ] Vista de cliente para ver sus datos
+-  [x] Vista de cliente para ver sus datos
+-  [x] Vista de cliente para modificar sus datos
+-  [ ] Vista de cliente para visulizar categorias
 -  [ ] Vista de cliente para visualizar productos
 -  [ ] Vista de cliente para armar carrito de compras
 

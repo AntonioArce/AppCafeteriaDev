@@ -1,23 +1,75 @@
-import React from 'react'
-import { View, Text, Button} from 'react-native'
+import React, { useEffect } from 'react'
+import { View, Text, Button, TouchableOpacity, Image, Pressable} from 'react-native'
 import useViewModel from './ViewModel'
-import { StackScreenProps } from '@react-navigation/stack'
+import { StackNavigationProp, StackScreenProps } from '@react-navigation/stack'
 import { RootStackParamList } from '../../../navigator/MainStackNavigator'
+import { useNavigation } from '@react-navigation/native'
+import styles from './Styles'
+import { RoundedButton } from '../../../components/RoundedButton'
 
-interface Props extends StackScreenProps<RootStackParamList>{}
+export const ProfileInfoScreen = () => {
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>()
+  const { removeUserSession, user } = useViewModel()
 
-export const ProfileInfoScreen = ({navigation, route}: Props) => {
-  const { removeSession, user } = useViewModel()
+  useEffect(() => {
+    if(user.idUsuario === ''){
+      navigation.navigate('HomeScreen');
+    }
+  }, [user])
+  
   return (
-    <View style = {{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <Text>Perfil de usuario</Text>
-        <Text>Bienvenido {user?.nombre}</Text>
-        <Button
-          onPress={() => {
-            removeSession()
-            navigation.navigate('HomeScreen')
-          }}
-          title='Cerrar Sesion'/>
+    <View style = { styles.container }>
+        <Image
+            source={ require('../../../../../assets/cafe-backg.jpg') } 
+            style={ styles.imageBackground }
+        />
+        <Pressable 
+            style={ styles.logout }
+            onPress={() => {
+              removeUserSession();
+            }}>
+            <Image
+                  source={ require('../../../../../assets/apagado.png') } 
+                  style={ styles.logoutImage }
+            />
+        </Pressable>
+        <View style = {styles.form}>
+            <View style={ styles.formInfo }>
+                <Image
+                  source={ require('../../../../../assets/clienteu.png')}
+                  style={ styles.formImage }
+                />
+                <View style={ styles.formContent }>
+                  <Text>{ user?.nombre }</Text>
+                  <Text style={ styles.formTextDescription }>Nombre del usuario</Text>
+                </View>
+            </View>
+            <View style={ {...styles.formInfo, marginTop: 25} }>
+                <Image
+                  source={ require('../../../../../assets/email.png')}
+                  style={ styles.formImage }
+                />
+                <View style={ styles.formContent }>
+                  <Text>{ user?.correo }</Text>
+                  <Text style={ styles.formTextDescription }>Correo electronico</Text>
+                </View>
+            </View>
+            <View style={ {...styles.formInfo, marginTop: 25, marginBottom: 70} }>
+                <Image
+                  source={ require('../../../../../assets/phone.png')}
+                  style={ styles.formImage }
+                />
+                <View style={ styles.formContent }>
+                  <Text>{ user?.num_telefono }</Text>
+                  <Text style={ styles.formTextDescription }>Telefono</Text>
+                </View>
+            </View>
+            <RoundedButton
+              onPress={() => {
+                navigation.navigate('ProfileUpdateScreen', { user: user! })
+              }}
+              text='ACTUALIZAR INFORMACION' />
+        </View>
     </View>
   )
 } 
