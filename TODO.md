@@ -5,7 +5,7 @@
 -  [x] Corregir modulo modificar datos de producto a un PUT
 -  [ ] Modulo Recuperar Contraseña (Administrador y cliente)
 -  [x] Modulo Modificar datos personales de cliente
--  [ ] Modulo de modificacion de datos de cliente
+-  [x] Modulo de modificacion de datos de cliente
 -  [ ] Modulo de paypal para pagar compra
 -  [ ] Modulo de trabajador para recibir solicitud de compra
 
