@@ -29,7 +29,7 @@
 -  [x] Eliminar categorias desde front (Admin)
 -  [x] Vista de cliente para ver sus datos
 -  [x] Vista de cliente para modificar sus datos
--  [ ] Vista de cliente para visulizar categorias
--  [ ] Vista de cliente para visualizar productos
--  [ ] Vista de cliente para armar carrito de compras
-
+-  [x] Vista de cliente para visulizar categorias
+-  [x] Vista de cliente para visualizar productos
+-  [x] Vista de cliente para armar carrito de compras
+- - [x] Funcionalidad para agregar y eliminar del carrito de compras

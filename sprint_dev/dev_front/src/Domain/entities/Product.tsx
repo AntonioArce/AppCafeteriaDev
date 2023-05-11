@@ -5,5 +5,6 @@ export interface Product{
     stock: any,
     precio: any,
     Tipo_Producto_idTipo_Producto: string | undefined
-    imagen: string
+    imagen: string,
+    quantity?: number
 }

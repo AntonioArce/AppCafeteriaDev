@@ -13,6 +13,7 @@ export const ClientTabsNavigator = () => {
             options={{
               title: 'Categorias',
               tabBarLabel: 'Categorias',
+              headerShown: false,
               tabBarIcon: ({ color}) => ( 
                 <Image
                   source={require('../../../assets/category.png')}
