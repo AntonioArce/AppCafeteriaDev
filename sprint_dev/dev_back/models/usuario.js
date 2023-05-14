@@ -26,13 +26,14 @@ User.findById = (id, result) =>{
 
 User.findByEmail = (correo, result) =>{
     const sql = `SELECT 
-        idUsuario, 
-        nombre, apellido_paterno, apellido_materno,
-        num_telefono,
-        correo,
-        contrasena,
-        Rol_idRol 
-        FROM usuario WHERE correo = ?`
+        u.idUsuario, 
+        u.nombre, u.apellido_paterno, u.apellido_materno,
+        u.num_telefono,
+        u.correo,
+        u.contrasena,
+        u.Rol_idRol,  cl.idCliente
+        FROM usuario as u INNER JOIN cliente cl on u.idUsuario = cl.Usuario_idUsuario
+        WHERE correo = ?`
 
 
     db.query(sql, [correo], (err, user) => {

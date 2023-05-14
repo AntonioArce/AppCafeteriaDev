@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 const HomeStyles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#fff',
+      backgroundColor: '#FFFFFF',
       alignItems: 'center',
       justifyContent: 'center',
     },
@@ -14,11 +14,10 @@ const HomeStyles = StyleSheet.create({
     login: {
       backgroundColor: 'white',
       width: '80%',
-      height: '45%',
+      height: 500,
       position: 'absolute',
-      borderRadius: 30,
       padding: 50,
-      borderWidth: 1
+      justifyContent: 'center',
     },
     loginTitle: {
       fontWeight: 'bold',
@@ -39,26 +38,29 @@ const HomeStyles = StyleSheet.create({
       fontSize: 15
     },
     loginFormLinks: {
+      top: 20,
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
       paddingTop: 20
     },
     loginFormLinks1: {
-      flexDirection: 'row',
+      flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
       paddingTop: 80,
     },
     loginFormLinkIn: {
-      paddingRight: 10
+      paddingRight: 10,
+      fontSize: 18
     },
     loginFormRegister: {
-        fontStyle: 'italic',
+      fontStyle: 'italic',
       color: 'blue',
-      borderBottomWidth: 1,
+/*       borderBottomWidth: 1, */
       borderBottomColor: 'blue',
       fontWeight: 'bold',
+      fontSize: 15 
     },
   });
 

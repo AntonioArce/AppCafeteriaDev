@@ -7,6 +7,7 @@ import { RemoveUserLocalUseCase } from "../../Domain/useCases/userLocal/RemoveUs
 
 export const userInitialState: User = {
     idUsuario: '',
+    idCliente: '',
     nombre: '',
     apellido_paterno: '',
     apellido_materno: '',

@@ -1,5 +1,6 @@
 export interface User {
     idUsuario?: string;
+    idCliente?: string;
     nombre: string;
     apellido_paterno: string;
     apellido_materno: string;

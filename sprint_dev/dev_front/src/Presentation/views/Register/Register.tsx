@@ -17,7 +17,7 @@ export const RegisterScreen = () => {
     <View style={styles.container}>
           <Image source={require('../../../../assets/fondo.jpg')} style={styles.back}/>
           <View style={styles.login}>
-            <Text style={styles.loginTitle}>Registrate</Text>
+            <Text style={styles.loginTitle}>Ingresa tus datos</Text>
             <View style={styles.loginForm}>
                 <ScrollView>
                   <CustomTextInput 
@@ -73,7 +73,7 @@ export const RegisterScreen = () => {
                   />
                 </ScrollView>
                 <View style={{marginTop: 30}}>
-                        <RoundedButton text='ENTRAR'onPress={ () => Register() }/>
+                        <RoundedButton text='REGISTRARSE'onPress={ () => Register() }/>
                 </View>
             </View>
           </View>

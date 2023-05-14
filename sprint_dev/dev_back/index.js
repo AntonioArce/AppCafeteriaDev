@@ -23,7 +23,7 @@ const upload = multer({
 })
 
 
-server.listen(3000, '192.168.1.14' || 'localhost', function(){
+server.listen(3000, '192.168.1.72' || 'localhost', function(){
     console.log('Server running at http://192.168.1.16:' + port)
 })
 
@@ -32,12 +32,14 @@ const usersRoutes = require('./routes/userRoutes')
 const categoriesRoutes = require('./routes/categoryRoutes')
 const trabajadoresRoutes = require('./routes/trabajadorRoutes')
 const productsRoutes = require('./routes/productosRoutes')
+const orderRoutes = require('./routes/orderRoutes')
 
 // Llamado a las rutas
 usersRoutes(app)
 categoriesRoutes(app)
 trabajadoresRoutes(app)
 productsRoutes(app, upload)
+orderRoutes(app)
 
 app.get('/', (req,res) =>{
     res.send('Ruta raiz de la Aplicacion')
