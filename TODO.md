@@ -33,3 +33,7 @@
 -  [x] Vista de cliente para visualizar productos
 -  [x] Vista de cliente para armar carrito de compras
 - - [x] Funcionalidad para agregar y eliminar del carrito de compras
+- - [x] Registrar Compra con estatus pagado (sin pasarela) a la base de datos
+- [ ] Vista de cliente para visualizar sus ordenes por estatus
+- [ ] Vista de Admministrador para visualizar las ordenes por estatus
+- [ ] Vista de trabajador para ver las ordenes que estan en estatus pagado
