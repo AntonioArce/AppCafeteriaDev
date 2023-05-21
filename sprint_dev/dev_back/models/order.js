@@ -123,5 +123,29 @@ Order.updateToFine = (id_order, result) =>{
     )
 
 }
+Order.updateToDelivery = (id_order, result) =>{
+    const sql = `
+        UPDATE orders
+        SET estado = ?, updated_at = ?
+        WHERE id = ?
+    `
+    db.query(
+        sql,
+        [
+            4,
+            new Date(),
+            id_order 
+        ],
+        (err, data) => {
+            if (err) {
+                console.log("Error: ", err)
+                result(err,null)
+            }
+            else{
+                result(null, id_order)
+            }
+        }
+    )
+}
 
 module.exports = Order

@@ -35,5 +35,9 @@
 - - [x] Funcionalidad para agregar y eliminar del carrito de compras
 - - [x] Registrar Compra con estatus pagado (sin pasarela) a la base de datos
 - [ ] Vista de cliente para visualizar sus ordenes por estatus
-- [ ] Vista de Admministrador para visualizar las ordenes por estatus
-- [ ] Vista de trabajador para ver las ordenes que estan en estatus pagado
+- [x] Vista de Admministrador para visualizar las ordenes por estatus
+- [x] Vista de trabajador para ver las ordenes que estan en estatus PAGADO
+- [x] Vista de trabajador para ver las ordenes que estan en estatus PREPARACION
+- [x] Vista de trabajador para ver las ordenes que estan en estatus LISTO
+- [x] Vista de trabajador para ver las ordenes que estan en estatus ENTREGADO
+

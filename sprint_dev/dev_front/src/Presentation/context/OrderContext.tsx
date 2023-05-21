@@ -3,6 +3,8 @@ import { ResponseApiDelivery } from "../../Data/sources/remote/models/ResponseAp
 import { Children, createContext, useState, useEffect } from 'react';
 import { GetByStatusOrderUseCase } from "../../Domain/useCases/Order/GetByStatusOrder";
 import { UpdateToPrepareOrderUseCase } from "../../Domain/useCases/Order/UpdateToPrepare";
+import { UpdateToFineOrderUseCase } from "../../Domain/useCases/Order/UpdateToFine";
+import { UpdateToDeliveredOrderUseCase } from "../../Domain/useCases/Order/UpdateToDelivered";
 
 export interface OrderContextProps{
     ordersPayed: Order[],
@@ -11,6 +13,8 @@ export interface OrderContextProps{
     ordersDelivery: Order[],
     getOrdersByStatus(status: string): Promise<void>,
     updateToPrepare(order: Order): Promise<ResponseApiDelivery>
+    updateToFine(order: Order): Promise<ResponseApiDelivery>
+    updateToDelivered(order: Order): Promise<ResponseApiDelivery>
 }
 
 export const OrderContext = createContext({} as OrderContextProps);
@@ -50,8 +54,24 @@ export const OrderProvider = ({children}: any) =>{
         const result = await UpdateToPrepareOrderUseCase(order)
         getOrdersByStatus('1')
         getOrdersByStatus('2')
+/*         getOrdersByStatus('3')
+        getOrdersByStatus('4') */
+        return result
+    }
+    const updateToFine = async (order: Order) =>{
+        const result = await UpdateToFineOrderUseCase(order)
+        getOrdersByStatus('2')
+        getOrdersByStatus('3')
+/*         getOrdersByStatus('')
+        getOrdersByStatus('4') */
+        return result
+    }
+    const updateToDelivered = async (order: Order) =>{
+        const result = await UpdateToDeliveredOrderUseCase(order)
         getOrdersByStatus('3')
         getOrdersByStatus('4')
+/*         getOrdersByStatus('')
+        getOrdersByStatus('4') */
         return result
     }
 
@@ -63,7 +83,9 @@ export const OrderProvider = ({children}: any) =>{
                 ordersFine,
                 ordersDelivery,
                 getOrdersByStatus,
-                updateToPrepare
+                updateToPrepare,
+                updateToFine,
+                updateToDelivered
             }}
         >
             {children}

@@ -5,4 +5,5 @@ module.exports = (app) =>{
     app.get('/api/orders/findByStatus/:status', ordersController.findByStatus)
     app.put('/api/orders/updateToPrepare', ordersController.updateToPrepare)
     app.put('/api/orders/updateToFine', ordersController.updateToFine)
+    app.put('/api/orders/updateToDelivered', ordersController.updateToDelivery)
 }

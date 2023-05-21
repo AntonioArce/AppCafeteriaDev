@@ -9,6 +9,7 @@ import { ClientTabsNavigator } from './ClientTabsNavigator';
 import { User } from '../../Domain/entities/User';
 import { ProfileUpdateScreen } from '../views/profile/update/ProfileUpdate';
 import { UserProvider } from '../context/UserContext';
+import { EmployeeTabsNavigator } from './EmployeeTabsNavigator';
 
 
 export type RootStackParamList = {
@@ -17,6 +18,7 @@ export type RootStackParamList = {
     RecoveryScreen: undefined,
     AdminTabsNavigator: undefined,
     ClientTabsNavigator: undefined,
+    EmployeeTabsNavigator: undefined,
     ProfileUpdateScreen: {user: User}
 };
 
@@ -31,6 +33,7 @@ export const MainStackNavigator = () => {
             <Stack.Screen name="RecoveryScreen" component={RecoveryScreen} />
             <Stack.Screen name="AdminTabsNavigator" component={AdminTabsNavigator}/>
             <Stack.Screen name="ClientTabsNavigator" component={ClientTabsNavigator}/>
+            <Stack.Screen name="EmployeeTabsNavigator" component={EmployeeTabsNavigator}/>
             <Stack.Screen name="ProfileUpdateScreen" component={ProfileUpdateScreen}
                   options={{
                     headerShown: true,

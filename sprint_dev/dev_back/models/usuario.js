@@ -46,7 +46,30 @@ User.findByEmail = (correo, result) =>{
             result(null, user[0])
         }
     })
-}
+}/* 
+User.findByEmailEmployee = (correo, result) =>{
+    const sql = `SELECT 
+        u.idUsuario, 
+        u.nombre, u.apellido_paterno, u.apellido_materno,
+        u.num_telefono,
+        u.correo,
+        u.contrasena,
+        u.Rol_idRol, t.idTrabajador
+        FROM usuario as u INNER JOIN trabajador t on u.idUsuario = t.idTrabajador
+        WHERE correo = ?`
+
+
+    db.query(sql, [correo], (err, user) => {
+        if (err) {
+            console.log('Error: '+ err)
+            result(err, null)
+        }
+        else{
+            console.log('Usuario Obtenido: '+ user[0])
+            result(null, user[0])
+        }
+    })
+} */
 
 
 User.create = async (user, result) => {

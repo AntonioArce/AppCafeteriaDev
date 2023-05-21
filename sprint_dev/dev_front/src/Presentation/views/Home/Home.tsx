@@ -29,11 +29,10 @@ export const HomeScreen = ({navigation, route}:Props) => {
       }
       else if(user?.rol === 2){
         navigation.replace('ClientTabsNavigator')
-      }
-      /* 
+      } 
       else if(user?.rol === 3){
-        navigation.replace('WorkScreen')
-      } */
+        navigation.replace('EmployeeTabsNavigator')
+      }
     }
 }, [user])
 

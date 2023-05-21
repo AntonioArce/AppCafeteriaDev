@@ -84,5 +84,22 @@ module.exports = {
                 data: `${id_order}`
             })
         })
+    },
+    async updateToDelivery(req,res){
+        const order = req.body
+        Order.updateToDelivery(order.id, (err, id_order) => {
+            if(err){
+                return res.status(501).json({
+                    success: false,
+                    message: 'Error updating orders',
+                    error: err
+                })
+            }
+            return res.status(201).json({
+                success: true,
+                message: 'Order updated successfully ',
+                data: `${id_order}`
+            })
+        })
     }
 }
