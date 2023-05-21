@@ -4,6 +4,8 @@ import { AdminCategoryList } from '../views/profileAdmin/category/list/CategoryL
 import { AdminScreen } from '../views/profileAdmin/Admin';
 import { AdminCategoryNavigator } from './AdminCategoryNavigator';
 import { AdminEmployeeNavigator } from './AdminEmployeeNavigator';
+import { AdminOrderListScreen } from '../views/profileAdmin/order/list/OrderList';
+import { AdminOrderStackNavigator } from './AdminOrderStackNavigator';
 
 const Tab = createBottomTabNavigator();
 
@@ -27,6 +29,15 @@ export const AdminTabsNavigator = () => {
                 tabBarLabel: 'Empleados',
                 tabBarIcon: ({ color }) => (
                     <Image source={require('../../../assets/employee.png')} style={{width: 25, height: 25}}/>
+                )
+            }}
+        />
+        <Tab.Screen name="AdminOrderStackNavigator" component={ AdminOrderStackNavigator }
+            options={{
+                title: 'Pedidos',
+                tabBarLabel: 'Pedidos',
+                tabBarIcon: ({ color }) => (
+                    <Image source={require('../../../assets/order.png')} style={{width: 25, height: 25}}/>
                 )
             }}
         />

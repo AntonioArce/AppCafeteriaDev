@@ -16,4 +16,25 @@ export class OrderRepositoryImpl implements OrderRepository{
             return Promise.resolve(apiError)
         }
     }
+    async getByStatus(status: string): Promise<Order[]> {
+        try {
+            const response = await ApiDelivery.get<Order[]>(`/orders/findByStatus/${status}`)
+            return Promise.resolve(response.data)
+        } catch (error) {
+            let e = (error as AxiosError)
+            console.log("ERROR: "+ JSON.stringify(e.response?.data))
+            return Promise.resolve([])
+        }
+    }
+    async updateToPrepare(order: Order): Promise<ResponseApiDelivery> {
+        try {
+            const response = await ApiDelivery.put<ResponseApiDelivery>('/orders/updateToPrepare', order);
+            return Promise.resolve(response.data);
+        } catch (error) {
+            let e = (error as AxiosError);
+            console.log('ERROR: ' + JSON.stringify(e.response?.data));
+            const apiError:ResponseApiDelivery = JSON.parse(JSON.stringify(e.response?.data)); 
+            return Promise.resolve(apiError)
+        }
+    }
 }

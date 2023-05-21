@@ -7,5 +7,5 @@ export interface Order {
     estado?: string, 
     timestamp?: number,
     client?: User,
-    products?: Product[]
+    products: Product[]
 }

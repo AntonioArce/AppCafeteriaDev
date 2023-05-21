@@ -7,15 +7,21 @@ import useViewModel from './ViewModel'
 import styles from './Styles'
 
 export const RegisterScreen = () => {
-  const { nombre,apellido_paterno, apellido_materno, num_telefono, contrasena, correo, confirmPassword, errorMessage, onChange, Register } = useViewModel()
+  const { nombre,apellido_paterno, apellido_materno, num_telefono, contrasena, correo, confirmPassword, errorMessage, successMessage, onChange, Register } = useViewModel()
   useEffect(() => {
     if(errorMessage != ''){
         ToastAndroid.show(errorMessage,ToastAndroid.LONG)
     }
   }, [errorMessage])
+  useEffect(() => {
+      if(successMessage!= ''){
+          ToastAndroid.show(successMessage,ToastAndroid.LONG)
+      }
+  }, [successMessage])
+  
   return (
     <View style={styles.container}>
-          <Image source={require('../../../../assets/fondo.jpg')} style={styles.back}/>
+          <Image source={require('../../../../assets/cafes.jpg')} style={styles.back}/>
           <View style={styles.login}>
             <Text style={styles.loginTitle}>Ingresa tus datos</Text>
             <View style={styles.loginForm}>

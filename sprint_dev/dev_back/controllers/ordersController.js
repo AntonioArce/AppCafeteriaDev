@@ -31,5 +31,58 @@ module.exports = {
                 data: `${id}`
             })
         })
+    },
+
+    async findByStatus(req,res){
+        const estado = req.params.status
+        Order.findByStatus(estado, (err,data)=>{
+            if(err){
+                return res.status(501).json({
+                    success: false,
+                    message: 'Error finding orders',
+                    error: err
+                })
+            }
+            
+            for(const d of data){
+                d.client = JSON.parse(d.client)
+                d.products = JSON.parse(d.products)
+            }
+            return res.status(201).json(data)
+        })
+    },
+    async updateToPrepare(req,res){
+        const order = req.body
+        Order.updateToPrepare(order.id, (err, id_order) => {
+            if(err){
+                return res.status(501).json({
+                    success: false,
+                    message: 'Error updating orders',
+                    error: err
+                })
+            }
+            return res.status(201).json({
+                success: true,
+                message: 'Order updated successfully ',
+                data: `${id_order}`
+            })
+        })
+    },
+    async updateToFine(req,res){
+        const order = req.body
+        Order.updateToFine(order.id, (err, id_order) => {
+            if(err){
+                return res.status(501).json({
+                    success: false,
+                    message: 'Error updating orders',
+                    error: err
+                })
+            }
+            return res.status(201).json({
+                success: true,
+                message: 'Order updated successfully ',
+                data: `${id_order}`
+            })
+        })
     }
 }

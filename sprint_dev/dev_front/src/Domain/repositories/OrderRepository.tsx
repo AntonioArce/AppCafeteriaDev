@@ -2,5 +2,7 @@ import { ResponseApiDelivery } from "../../Data/sources/remote/models/ResponseAp
 import { Order } from "../entities/Order";
 
 export interface OrderRepository {
-    create(order: Order): Promise<ResponseApiDelivery>;
+    create(order: Order): Promise<ResponseApiDelivery>
+    getByStatus(status: string): Promise<Order[]>
+    updateToPrepare(order: Order): Promise<ResponseApiDelivery>
 }
