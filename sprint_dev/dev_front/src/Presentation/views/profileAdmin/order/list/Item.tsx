@@ -9,16 +9,17 @@ interface Props {
     navigation: StackNavigationProp<AdminOrderStackParamList, 'AdminOrderListScreen', undefined>
 }
 
-export const OrderListItem = ({order, navigation}: Props) =>{
-    return(
-        <TouchableOpacity 
-            onPress={() => navigation.navigate('AdminOrderDetailScreen', {order: order})}
+export const OrderListItem = ({ order, navigation }: Props) => {
+    const dynamicStyle = order.estado == '4' ? styles.deliveredContainer : styles.container
+    return (
+        <TouchableOpacity
+            onPress={() => navigation.navigate('AdminOrderDetailScreen', { order: order })}
         >
-            <View style={styles.container}>
+            <View style={[styles.container, dynamicStyle]}>
                 <Text style={styles.order}>Orden #{order.id}</Text>
-                <Text style={ {...styles.info, marginTop: 10} }>Fecha del pedido: { DateFormatter(order.timestamp!)}</Text>
-                <Text style={ styles.info }>Cliente: {order.client?.nombre}</Text>
-                <View style= {styles.divider}></View>
+                <Text style={{ ...styles.info, marginTop: 10 }}>Fecha del pedido: {DateFormatter(order.timestamp!)}</Text>
+                <Text style={styles.info}>Cliente: {order.client?.nombre}</Text>
+                <View style={styles.divider}></View>
             </View>
         </TouchableOpacity>
     )
@@ -26,7 +27,8 @@ export const OrderListItem = ({order, navigation}: Props) =>{
 
 const styles = StyleSheet.create({
     container: {
-        marginHorizontal: 30
+        marginHorizontal: 0,
+        paddingLeft: 15
     },
     order: {
         fontWeight: 'bold',
@@ -42,5 +44,8 @@ const styles = StyleSheet.create({
     },
     info: {
         fontSize: 13
-    }
+    },
+    deliveredContainer: {
+        backgroundColor: '#00B894'
+    },
 });

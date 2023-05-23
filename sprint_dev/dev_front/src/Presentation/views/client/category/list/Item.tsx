@@ -11,26 +11,26 @@ interface Props {
     navigation: StackNavigationProp<ClientStackParamList, "ClientCategoryListScreen", undefined>
 }
 
-export const ClientCategoryItem = ({category, height, width, navigation}: Props) => {
-    
-  return (
-    <TouchableOpacity
-        onPress={ () => {
-            navigation.navigate('ClientProductListScreen', {idCategory: category.idTipo_Producto!})
-        }}
-        style={ { ...styles.container, height: height, width: width} }>
-        
-        <View style={ styles.imageContainer }>
-            <Image 
-                style={styles.image}
-                source={require('../../../../../../assets/carruselfondo.jpg')}
+export const ClientCategoryItem = ({ category, height, width, navigation }: Props) => {
+
+    return (
+        <TouchableOpacity
+            onPress={() => {
+                navigation.navigate('ClientProductListScreen', { idCategory: category.idTipo_Producto! })
+            }}
+            style={{ ...styles.container, height: height, width: width }}>
+
+            <View style={styles.imageContainer}>
+                <Image
+                    style={styles.image}
+                    source={require('../../../../../../assets/carruselfondo.jpg')}
                 />
-            <View style={styles.titleContainer}>
-                <Text style={ styles.title }>{ category.nombre_tipo }</Text>
+                <View style={styles.titleContainer}>
+                    <Text style={styles.title}>{category.nombre_tipo}</Text>
+                </View>
             </View>
-        </View>
-    </TouchableOpacity>
-  )
+        </TouchableOpacity>
+    )
 }
 
 const styles = StyleSheet.create({
@@ -43,11 +43,12 @@ const styles = StyleSheet.create({
     imageContainer: {
         flex: 1,
         backgroundColor: 'white',
-        borderRadius: 25
+        borderRadius: 10
     },
     image: {
         flex: 1,
         resizeMode: 'stretch',
+        width: 320,
         borderTopLeftRadius: 24,
         borderTopRightRadius: 24,
         opacity: 0.9
