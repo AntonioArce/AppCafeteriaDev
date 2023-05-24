@@ -51,6 +51,27 @@ module.exports = {
             return res.status(201).json(data)
         })
     },
+    async findByClientAndStatus(req, res){
+        const estado = req.params.status
+        const client = req.params.id_client
+
+        Order.findByClientAndStatus(client, estado, (err,data) => {
+            if(err){
+                return res.status(501).json({
+                    success: false,
+                    message: 'Error updating orders',
+                    error: err
+                })
+            }
+            for(const d of data){
+                d.client = JSON.parse(d.client)
+                d.products = JSON.parse(d.products)
+            }
+            return res.status(201).json(data)
+        })
+
+
+    },
     async updateToPrepare(req,res){
         const order = req.body
         Order.updateToPrepare(order.id, (err, id_order) => {
