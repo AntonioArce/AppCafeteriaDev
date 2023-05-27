@@ -18,7 +18,6 @@ export const OrderListItem = ({ order, navigation }: Props) => {
             <View style={[styles.container, dynamicStyle]}>
                 <Text style={styles.order}>Orden #{order.id}</Text>
                 <Text style={{ ...styles.info, marginTop: 10 }}>Fecha del pedido: {DateFormatter(order.timestamp!)}</Text>
-                <Text style={styles.info}>Cliente: {order.client?.nombre}</Text>
                 <View style={styles.divider}></View>
             </View>
         </TouchableOpacity>

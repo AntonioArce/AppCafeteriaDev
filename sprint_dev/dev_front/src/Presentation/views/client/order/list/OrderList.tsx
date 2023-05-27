@@ -1,11 +1,12 @@
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { FlatList, Text, View, useWindowDimensions } from 'react-native'
 import { TabBar, TabView } from 'react-native-tab-view';
 import { ClientOrderStackParamList } from '../../../../navigator/ClientOrderStackNavigator';
-import useViewModel from './ViewModel'
 import { OrderListItem } from './Item';
+import socket from '../../../../Utils/Socketio';
+import useViewModel from './ViewModel'
 
 interface Props {
     status: string
@@ -18,6 +19,16 @@ const OrderListView = ({ status }: Props) => {
     useEffect(() => {
         console.log(user.idCliente);
         getOrders(user.idCliente!, status)
+    }, [])
+
+    useEffect(() => {
+        socket.connect()
+        socket.on('connect', () => {
+            console.log('CONECTADO A SOCKET IO---------------------------------------------------------------')
+        })
+        socket.on(`/orders/${user.idCliente!}`, (data) => {
+            getOrders(user.idCliente!, status)
+        })
     }, [])
 
     return (

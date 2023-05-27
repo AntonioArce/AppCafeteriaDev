@@ -1,27 +1,39 @@
 import { StyleSheet } from "react-native";
 
 const AdminCategoryUpdateStyle = StyleSheet.create({
-    title: {
-        marginTop: 20,
-        alignItems: 'center',
-    },
-    image: {
-        width: 250,
-        height: 200,
-        borderRadius: 10
+    container: {
+        flex: 1,
+        /*         backgroundColor: 'black', */
     },
     form: {
-        alignItems: 'center',
-        marginTop: 20,
+        width: '100%',
+        height: '65%',
+        backgroundColor: 'white',
+        position: 'absolute',
+        bottom: 0,
+        borderTopLeftRadius: 40,
+        borderTopRightRadius: 40,
+        padding: 30,
     },
-    items: {
-        alignItems: 'center'
+    logoContainer: {
+        position: 'absolute',
+        alignSelf: 'center',
+        top: '5%',
+        alignItems: 'center',
+    },
+    logoImage: {
+        width: '140%',
+        height: '300%',
+    },
+    logoText: {
+        color: 'white',
+        textAlign: 'center',
+        fontSize: 22,
+        marginTop: 10,
+        fontWeight: 'bold',
     },
     boton: {
-        alignItems: 'center',
-        marginTop: 30,
-        width: '50%',
-        height: '50%',
+        top: 30
     }
 })
 

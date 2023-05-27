@@ -1,9 +1,9 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { GetByStatusOrderUseCase } from '../../../../../Domain/useCases/Order/GetByStatusOrder'
 import { Order } from '../../../../../Domain/entities/Order'
 import { OrderContext } from '../../../../context/OrderContext'
 import { UserContext } from '../../../../context/UserContext'
-
+import socket from '../../../../Utils/Socketio'
 
 const AdminOrderListViewModel = () => {
     //const [orders, setOrders] = useState<Order[]>([])
@@ -12,7 +12,7 @@ const AdminOrderListViewModel = () => {
 
     const getOrders = async (id_client: string, status: string) => {
         const result = await getOrdersByClientAndStatus(id_client, status)
-        console.log('Ordenes: ' + JSON.stringify(result, null, 3))
+        /* console.log('Ordenes: ' + JSON.stringify(result, null, 3)) */
     }
     return {
         ordersPayed,

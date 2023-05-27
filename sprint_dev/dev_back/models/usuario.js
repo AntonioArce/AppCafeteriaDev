@@ -68,7 +68,7 @@ User.findByEmailEmployee = (correo, result) =>{
             console.log('Usuario Obtenido: '+ user[0])
             result(null, user[0])
         }
-    })
+    })toLowerCase()
 } */
 
 
@@ -77,11 +77,11 @@ User.create = async (user, result) => {
     const sql = `call registerCliente(?,?,?,?,?,?)`
 
     db.query(sql, [
-            user.nombre,
-            user.apellido_paterno,
-            user.apellido_materno,
+            user.nombre.toLowerCase(),
+            user.apellido_paterno.toLowerCase(),
+            user.apellido_materno.toLowerCase(),
             user.num_telefono,
-            user.correo,
+            user.correo.toLowerCase(),
             hash,
         ],
         (err, res) => {

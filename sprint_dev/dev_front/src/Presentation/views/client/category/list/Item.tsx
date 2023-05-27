@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     image: {
         flex: 1,
         resizeMode: 'stretch',
-        width: 392,
+        width: '100%',
         borderTopLeftRadius: 24,
         borderTopRightRadius: 24,
         opacity: 0.9

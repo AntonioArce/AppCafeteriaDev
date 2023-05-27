@@ -28,5 +28,24 @@ OrderHasProducts.create = (id_order, id_product, quantity, result) => {
         }
     )
 }
+OrderHasProducts.removeStock = (id_product,quantity, result) =>{
+    const sql = `
+        update productos SET stock = stock - ? where idProductos = ?
+    `
+    db.query(
+        sql,
+        [quantity, id_product],
+        (err, res) => {
+                if (err) {
+                    console.log("Error: ", err)
+                    result(err,null)
+                }
+                else{
+                    console.log('Stock modificado con exito')
+                    result(null, res.insertId)
+                }
+            }
+        )
+}
 
 module.exports = OrderHasProducts

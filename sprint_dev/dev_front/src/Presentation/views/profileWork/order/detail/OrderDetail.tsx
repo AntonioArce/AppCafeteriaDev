@@ -13,13 +13,23 @@ import { EmployeeOrderStackParamList } from '../../../../navigator/EmployeeOrder
 interface Props extends StackScreenProps<EmployeeOrderStackParamList, 'EmployeeOrderDetailScreen'> { };
 export const EmployeeOrderDetailScreen = ({ navigation, route }: Props) => {
   const { order } = route.params
-  const { total, responseMessage, prepareOrder, fineOrder, deliveredOrder } = useViewModel(order)
+  const { total, socket, responseMessage, prepareOrder, fineOrder, deliveredOrder } = useViewModel(order)
 
   useEffect(() => {
     if (responseMessage !== '') {
       ToastAndroid.show(responseMessage, ToastAndroid.LONG)
     }
   }, [responseMessage])
+
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('beforeRemove', () => {
+      console.log('EVENTO BEFORE');
+      socket.disconnect();
+
+    })
+    return unsubscribe
+  }, [])
+
 
   return (
     <View style={styles.container}>

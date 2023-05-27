@@ -5,33 +5,33 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { ClientStackParamList } from '../../../../navigator/ClientStackNavigator';
 
 
-interface Props{ 
+interface Props {
     product: Product;
-    navigation: StackNavigationProp<ClientStackParamList, 'ClientProductListScreen'>   
+    navigation: StackNavigationProp<ClientStackParamList, 'ClientProductListScreen'>
 }
 
-export const ClientProductListItem = ({product, navigation}: Props) =>{
+export const ClientProductListItem = ({ product, navigation }: Props) => {
     return (
         <TouchableOpacity
-            onPress={() => navigation.navigate('ClientProductDetailScreen',{product: product})}
+            onPress={() => navigation.navigate('ClientProductDetailScreen', { product: product })}
         >
-            <View style={ styles.container }>
-            
+            <View style={styles.container}>
+
 
                 <View style={styles.info}>
-                    <Text style={styles.title}>{ product.nombre }</Text>
-                    <Text style={styles.description}>{ product.descripcion }</Text>
-                    <Text style={styles.price}>${ product.precio }</Text>
+                    <Text style={styles.title}>{product.nombre}</Text>
+                    <Text style={styles.description}>{product.descripcion}</Text>
+                    <Text style={styles.price}>${product.precio}</Text>
                 </View>
 
                 <Image
-                    style={ styles.image }
+                    style={styles.image}
                     source={{ uri: product.imagen }}
                 />
-            
+
             </View>
             <View style={styles.divider}></View>
-    </TouchableOpacity>
+        </TouchableOpacity>
     )
 }
 
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     container: {
         width: '100%',
         flexDirection: 'row',
-        height: 100,
+        height: 120,
         // marginHorizontal: 20,
         paddingHorizontal: 20,
         marginTop: 10,
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     actionImage: {
         width: 25,
         height: 25,
-        marginVertical:2
+        marginVertical: 2
     },
     divider: {
         height: 2,
