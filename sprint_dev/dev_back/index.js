@@ -35,8 +35,8 @@ const upload = multer({
 })
 
 
-server.listen(3000, '192.168.1.8' || 'localhost', function(){
-    console.log('Server running at http://192.168.238.39:' + port)
+server.listen(3000, '192.168.1.73' || 'localhost', function(){
+    console.log('Server running at http://192.168.1.73:' + port)
 })
 
 // Importar Rutas

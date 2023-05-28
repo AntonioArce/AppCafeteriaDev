@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { FlatList, Text, View, useWindowDimensions } from 'react-native'
 import { TabBar, TabView } from 'react-native-tab-view';
 import { ClientOrderStackParamList } from '../../../../navigator/ClientOrderStackNavigator';
@@ -14,12 +14,21 @@ interface Props {
 
 
 const OrderListView = ({ status }: Props) => {
-    const { ordersPayed, ordersPrepared, ordersFine, ordersDelivery, getOrders, user } = useViewModel()
     const navigation = useNavigation<StackNavigationProp<ClientOrderStackParamList, 'ClientOrderListScreen'>>();
+    const { ordersPayed, ordersPrepared, ordersFine, ordersDelivery, getOrders, user } = useViewModel()
+    const [refreshing, setRefreshing] = useState(false);
     useEffect(() => {
         console.log(user.idCliente);
         getOrders(user.idCliente!, status)
     }, [])
+
+    const onRefresh = useCallback(() => {
+        setRefreshing(true);
+        getOrders(user.idCliente!, status)
+        setTimeout(() => {
+            setRefreshing(false);
+        }, 2000);
+    }, []);
 
     useEffect(() => {
         socket.connect()
@@ -47,6 +56,8 @@ const OrderListView = ({ status }: Props) => {
                 }
                 keyExtractor={(item) => item.id!}
                 renderItem={({ item }) => <OrderListItem order={item} navigation={navigation} />}
+                refreshing={refreshing}
+                onRefresh={onRefresh}
             />
         </View>
     );

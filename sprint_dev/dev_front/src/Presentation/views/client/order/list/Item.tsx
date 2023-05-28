@@ -16,7 +16,7 @@ export const OrderListItem = ({ order, navigation }: Props) => {
             onPress={() => navigation.navigate('ClientOrderDetailScreen', { order: order })}
         >
             <View style={[styles.container, dynamicStyle]}>
-                <Text style={styles.order}>Orden #{order.id}</Text>
+                <Text style={styles.order}>FOLIO #00{order.id}</Text>
                 <Text style={{ ...styles.info, marginTop: 10 }}>Fecha del pedido: {DateFormatter(order.timestamp!)}</Text>
                 <View style={styles.divider}></View>
             </View>

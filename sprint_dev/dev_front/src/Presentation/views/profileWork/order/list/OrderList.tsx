@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { Text, View, FlatList } from "react-native";
 import { useWindowDimensions } from 'react-native';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
@@ -18,10 +18,18 @@ interface Props {
 const OrderListView = ({ status }: Props) => {
     const { ordersPayed, ordersPrepared, ordersFine, ordersDelivery, getOrders } = useViewModel()
     const navigation = useNavigation<StackNavigationProp<EmployeeOrderStackParamList, 'EmployeeOrderListScreen'>>();
+    const [refreshing, setRefreshing] = useState(false);
     useEffect(() => {
         console.log(status);
         getOrders(status)
     }, [])
+    const onRefresh = useCallback(() => {
+        setRefreshing(true);
+        getOrders(status)
+        setTimeout(() => {
+            setRefreshing(false);
+        }, 2000);
+    }, []);
 
     /* useEffect(() => {
         const unsubscribe = navigation.addListener('beforeRemove', () => {
@@ -48,6 +56,8 @@ const OrderListView = ({ status }: Props) => {
                 }
                 keyExtractor={(item) => item.id!}
                 renderItem={({ item }) => <OrderListItem order={item} navigation={navigation} />}
+                refreshing={refreshing}
+                onRefresh={onRefresh}
             />
         </View>
     );

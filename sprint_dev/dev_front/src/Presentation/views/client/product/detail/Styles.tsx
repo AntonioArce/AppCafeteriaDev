@@ -1,13 +1,13 @@
 import { StyleSheet } from "react-native"
 
 const ClientProductDetailStyles = StyleSheet.create({
-    container: { 
-        flex: 1, 
+    container: {
+        flex: 1,
         backgroundColor: 'white',
     },
     productImage: {
         width: '100%',
-        height: '50%'
+        height: '60%'
     },
     productDetail: {
         position: 'absolute',
