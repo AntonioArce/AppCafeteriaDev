@@ -12,11 +12,12 @@ import { useEffect } from 'react';
 interface Props extends StackScreenProps<RootStackParamList, "HomeScreen"> { }
 
 export const HomeScreen = ({ navigation, route }: Props) => {
-  const { email, password, errorMessage, user, onChange, login } = useViewModel();
+  const { email, password, errorMessage, user, onChange, login, setErrorMessage } = useViewModel();
 
   useEffect(() => {
     if (errorMessage !== '') {
       ToastAndroid.show(errorMessage, ToastAndroid.LONG)
+      setErrorMessage('')
     }
   }, [errorMessage])
 
@@ -69,7 +70,7 @@ export const HomeScreen = ({ navigation, route }: Props) => {
           <View style={styles.loginFormLinks1}>
             <Text style={styles.loginFormLinkIn}>¿No tienes cuenta?</Text>
             <TouchableOpacity onPress={() => navigation.navigate('RegisterScreen')}>
-              <Text style={styles.loginFormRegister}>Registrate</Text>
+              <Text style={styles.loginFormRegister}>Registrarse</Text>
             </TouchableOpacity>
           </View>
         </View>

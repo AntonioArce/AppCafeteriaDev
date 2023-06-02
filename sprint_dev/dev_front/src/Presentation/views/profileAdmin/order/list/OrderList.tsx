@@ -98,14 +98,15 @@ export const AdminOrderListScreen = () => {
             renderTabBar={props => (
                 <TabBar
                     {...props}
-                    indicatorStyle={{ backgroundColor: '#c2c2c2' }}
+                    indicatorStyle={{ backgroundColor: '#c2c2c2', shadowColor: 'black' }}
                     activeColor='black'
                     inactiveColor='gray'
-                    /*scrollEnabled= {true} */
+                    /* scrollEnabled={true} */
                     style={{
                         backgroundColor: 'white',
-                        height: 90,
+                        height: 100,
                         justifyContent: 'center',
+                        borderTopColor: 'gray',
                     }}
                 />
             )}

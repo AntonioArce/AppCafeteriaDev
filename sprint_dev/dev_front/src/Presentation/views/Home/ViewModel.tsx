@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext} from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { LoginAuthUseCase } from '../../../Domain/useCases/auth/LoginAuth';
 import { SaveUserLocalUseCase } from '../../../Domain/useCases/userLocal/SaveUserLocal';
 import { useUserLocal } from '../../hooks/useUserLocal';
@@ -11,33 +11,33 @@ const HomeViewModel = () => {
         password: '',
     });
 
-    const {user, saveUserSession} = useContext( UserContext )
-    console.log('USUARIO DE SESION: '+ JSON.stringify(user))
+    const { user, saveUserSession } = useContext(UserContext)
+    console.log('USUARIO DE SESION: ' + JSON.stringify(user))
 
     const onChange = (property: string, value: any) => {
-        setValues({ ...values, [property]: value});
+        setValues({ ...values, [property]: value });
     }
 
-    const login = async () =>{
-        if(isValidForm()){
+    const login = async () => {
+        if (isValidForm()) {
             const response = await LoginAuthUseCase(values.email, values.password)
-            console.log("RESPONSE: "+ JSON.stringify(response))
-            if(!response.success){
+            console.log("RESPONSE: " + JSON.stringify(response))
+            if (!response.success) {
                 setErrorMessage(response.message)
             }
-            else{
+            else {
                 console.log("SAVEEEEE")
                 saveUserSession(response.data)
-            } 
+            }
         }
     }
 
     const isValidForm = (): boolean => {
-        if(values.email === ''){
+        if (values.email === '') {
             setErrorMessage('Ingresa el correo')
             return false
         }
-        if(values.password === ''){
+        if (values.password === '') {
             setErrorMessage('Ingresa la contraseña')
             return false
         }
@@ -49,7 +49,8 @@ const HomeViewModel = () => {
         user,
         onChange,
         login,
-        errorMessage
+        errorMessage,
+        setErrorMessage
     }
 }
 

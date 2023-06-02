@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import { Text, View, Image, TextInput, Button, Touchable, TouchableOpacity, ScrollView, ToastAndroid } from 'react-native';
+import React, { useEffect, useState } from 'react'
+import { Text, View, Image, ScrollView, ToastAndroid, Modal, Alert, Pressable } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { RoundedButton } from '../../components/RoundedButton';
 import { CustomTextInput } from '../../components/CustomTextInput';
@@ -11,20 +11,20 @@ import { RootStackParamList } from '../../navigator/MainStackNavigator';
 
 export const RegisterScreen = () => {
       const navigation = useNavigation<StackNavigationProp<RootStackParamList>>()
-      const { nombre, apellido_paterno, apellido_materno, num_telefono, contrasena, correo, confirmPassword, errorMessage, successMessage, onChange, Register } = useViewModel()
+      const { nombre, apellido_paterno, apellido_materno, num_telefono, contrasena, correo, confirmPassword,
+            errorMessage, setErrorMessage, successMessage, onChange, Register, modal, setModal } = useViewModel()
       useEffect(() => {
             if (errorMessage != '') {
                   ToastAndroid.show(errorMessage, ToastAndroid.LONG)
-                  /* navigation.replace('HomeScreen') */
+                  setErrorMessage('')
             }
       }, [errorMessage])
-      useEffect(() => {
+      /* useEffect(() => {
             if (successMessage != '') {
-                  ToastAndroid.show(successMessage, ToastAndroid.LONG)
-
+                 
             }
       }, [successMessage])
-
+ */
       return (
             <View style={styles.container}>
                   <Image source={require('../../../../assets/cafes.jpg')} style={styles.back} />
@@ -87,11 +87,30 @@ export const RegisterScreen = () => {
                               <View>
                                     <RoundedButton text='REGISTRARSE' onPress={() => Register()} />
                               </View>
-                              <View style={{ top: 5 }}>
-                                    <RoundedButton text='INICIAR SESION' onPress={() => navigation.navigate("HomeScreen")} />
-                              </View>
                         </View>
                   </View>
+                  <Modal
+                        animationType="fade"
+                        transparent={true}
+                        visible={modal}
+                        onRequestClose={() => {
+                              Alert.alert('Modal has been closed.');
+                              setModal(!modal);
+                        }}>
+                        <View style={styles.centeredView}>
+                              <View style={styles.modalView}>
+                                    <Text style={styles.modalText}>Tu usuario fue creado con éxito</Text>
+                                    <Pressable
+                                          style={[styles.button, styles.buttonClose]}
+                                          onPress={() => {
+                                                setModal(!modal)
+                                                navigation.replace('HomeScreen')
+                                          }}>
+                                          <Text style={styles.textStyle}>Cerrar</Text>
+                                    </Pressable>
+                              </View>
+                        </View>
+                  </Modal>
             </View>
       )
 }

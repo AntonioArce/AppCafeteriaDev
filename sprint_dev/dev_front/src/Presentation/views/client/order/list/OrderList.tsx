@@ -20,7 +20,7 @@ const OrderListView = ({ status }: Props) => {
     useEffect(() => {
         console.log(user.idCliente);
         getOrders(user.idCliente!, status)
-    }, [])
+    }, [status])
 
     const onRefresh = useCallback(() => {
         setRefreshing(true);

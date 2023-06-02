@@ -4,6 +4,7 @@ import { RegisterAuthUseCase } from '../../../Domain/useCases/auth/RegisterAuth'
 const RegisterViewModel = () => {
     const [errorMessage, setErrorMessage] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
+    const [modal, setModal] = useState(false)
     const [values, setValues] = useState({
         nombre: '',
         apellido_paterno: '',
@@ -21,8 +22,9 @@ const RegisterViewModel = () => {
     const Register = async () => {
         if (isValidForm()) {
             const response = await RegisterAuthUseCase(values)
-            console.log("RESULT: " + JSON.stringify(response))
-            setSuccessMessage('Usuario creado con exito')
+            setModal(true)
+            setSuccessMessage(response.data)
+
         }
     }
 
@@ -75,7 +77,10 @@ const RegisterViewModel = () => {
         errorMessage,
         successMessage,
         onChange,
-        Register
+        Register,
+        setErrorMessage,
+        modal,
+        setModal
     }
 }
 
