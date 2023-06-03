@@ -58,6 +58,7 @@ const OrderListView = ({ status }: Props) => {
                 renderItem={({ item }) => <OrderListItem order={item} navigation={navigation} />}
                 refreshing={refreshing}
                 onRefresh={onRefresh}
+
             />
         </View>
     );
@@ -97,6 +98,7 @@ export const ClientOrderListScreen = () => {
             renderTabBar={props => (
                 <TabBar
                     {...props}
+
                     indicatorStyle={{ backgroundColor: '#c2c2c2' }}
                     activeColor='black'
                     inactiveColor='gray'

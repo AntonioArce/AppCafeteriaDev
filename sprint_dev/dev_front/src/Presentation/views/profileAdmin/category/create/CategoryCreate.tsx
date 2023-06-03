@@ -21,7 +21,7 @@ export const AdminCategoryCreateScreen = () => {
     return (
         <View style={Style.container}>
             <View style={Style.logoContainer}>
-                <Image source={require('../../../../../../assets/newCat.jpg')} style={Style.logoImage} />
+                <Image source={require('../../../../../../assets/iconmas.png')} style={Style.logoImage} />
                 <Text style={{ marginTop: 25, fontSize: 20 }}> Registrar nueva categoria </Text>
             </View>
             <View style={Style.form}>

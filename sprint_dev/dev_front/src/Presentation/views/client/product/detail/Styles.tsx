@@ -93,7 +93,7 @@ const ClientProductDetailStyles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 22,
+        marginTop: 10,
     },
     modalView: {
         margin: 20,
@@ -104,14 +104,14 @@ const ClientProductDetailStyles = StyleSheet.create({
         shadowColor: '#000',
         shadowOffset: {
             width: 0,
-            height: 2,
+            height: 5,
         },
         shadowOpacity: 0.25,
         shadowRadius: 4,
         elevation: 5,
     },
     button: {
-        borderRadius: 20,
+        borderRadius: 15,
         padding: 10,
         elevation: 2,
     },

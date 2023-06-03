@@ -37,7 +37,7 @@ export const OrderProvider = ({ children }: any) => {
 
     const getOrdersByStatus = async (status: string) => {
         const result = await GetByStatusOrderUseCase(status)
-        console.log(result)
+        //console.log(result)
         if (status === '1') {
             setOrdersPayed(result)
         }
@@ -53,7 +53,7 @@ export const OrderProvider = ({ children }: any) => {
     }
     const getOrdersByClientAndStatus = async (id_client: string, status: string) => {
         const result = await GetByClientAndStatusOrderUseCase(id_client, status)
-        console.log(result)
+        //console.log(result)
         if (status === '1') {
             setOrdersPayed(result)
         }

@@ -1,5 +1,5 @@
-import React from 'react'
-import { View, StyleSheet, Image, Text, TouchableOpacity, ScrollView } from 'react-native';
+import React, { useState } from 'react'
+import { View, StyleSheet, Image, Text, TouchableOpacity, ScrollView, Modal, Alert, Pressable } from 'react-native';
 import { Product } from '../../../../../Domain/entities/Product';
 import { Category } from '../../../../../Domain/entities/Category';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -15,6 +15,7 @@ interface Props {
 
 export const AdminProductListItem = ({ product, category, remove }: Props) => {
     const navigation = useNavigation<StackNavigationProp<ProductStackParamList>>()
+    const [modalVisible, setModalVisible] = useState(false);
     return (
         <ScrollView>
             <View style={styles.container}>
@@ -29,12 +30,41 @@ export const AdminProductListItem = ({ product, category, remove }: Props) => {
                     <TouchableOpacity onPress={() => navigation.navigate('AdminProductUpdateScreen', { product: product, category: category })}>
                         <Image style={styles.actionImage} source={require('../../../../../../assets/editar.png')} />
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => remove(product)}>
+                    <TouchableOpacity onPress={() => setModalVisible(true)}>
                         <Image style={styles.actionImage} source={require('../../../../../../assets/eliminar.png')} />
                     </TouchableOpacity>
                 </View>
             </View>
-
+            <Modal
+                animationType="fade"
+                transparent={true}
+                visible={modalVisible}
+                onRequestClose={() => {
+                    Alert.alert('Modal has been closed.');
+                    setModalVisible(!modalVisible);
+                }}>
+                <View style={styles.centeredView}>
+                    <View style={styles.modalView}>
+                        <Text style={styles.modalText}>¿Esta seguro de eliminar esta categoria?</Text>
+                        <Text style={styles.modalText}>Si elimina la categoria, eliminara todos sus productos relacionados a esta</Text>
+                        <Text style={styles.modalText}>Esta acción es irreversible</Text>
+                        <Pressable
+                            style={[styles.buttonY, styles.buttonCloseYes]}
+                            onPress={() => {
+                                setModalVisible(!modalVisible)
+                                remove(product)
+                            }
+                            }>
+                            <Text style={styles.textStyle}>SI</Text>
+                        </Pressable>
+                        <Pressable
+                            style={[styles.button, styles.buttonClose]}
+                            onPress={() => setModalVisible(!modalVisible)}>
+                            <Text style={styles.textStyle}>NO</Text>
+                        </Pressable>
+                    </View>
+                </View>
+            </Modal>
         </ScrollView>
     )
 }
@@ -85,5 +115,58 @@ const styles = StyleSheet.create({
         backgroundColor: '#f2f2f2',
         marginHorizontal: 30,
         flex: 1
-    }
+    },
+    centeredView: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 22,
+    },
+    modalView: {
+        margin: 20,
+        backgroundColor: 'white',
+        borderRadius: 20,
+        padding: 30,
+        alignItems: 'center',
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5,
+    },
+    button: {
+        borderRadius: 10,
+        padding: 10,
+        elevation: 2,
+        top: 8,
+    },
+    buttonY: {
+        borderRadius: 10,
+        padding: 10,
+        paddingLeft: 12,
+        paddingRight: 12,
+        elevation: 2,
+    },
+    buttonOpen: { //#DC143C
+        backgroundColor: '#F194FF',
+    },
+    buttonClose: {
+        backgroundColor: '#00A86B',
+    },
+    buttonCloseYes: { // #DC143C
+        backgroundColor: '#DC143C',
+    },
+    textStyle: {
+        color: 'white',
+        fontWeight: 'bold',
+        textAlign: 'center',
+    },
+    modalText: {
+        marginBottom: 5,
+        fontWeight: 'bold',
+        textAlign: 'center',
+    },
 });

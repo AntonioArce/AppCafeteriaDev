@@ -75,7 +75,7 @@ export const ClientProductDetailScreen = ({ navigation, route }: Props) => {
 
 
             <Modal
-                animationType="slide"
+                animationType="fade"
                 transparent={true}
                 visible={modal}
                 onRequestClose={() => {

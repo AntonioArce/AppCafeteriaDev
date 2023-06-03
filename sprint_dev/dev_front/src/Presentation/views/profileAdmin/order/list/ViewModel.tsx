@@ -6,11 +6,11 @@ import { OrderContext } from '../../../../context/OrderContext'
 
 const AdminOrderListViewModel = () => {
     //const [orders, setOrders] = useState<Order[]>([])
-    const {ordersPayed,ordersPrepared, ordersFine, ordersDelivery, getOrdersByStatus} = useContext(OrderContext)
+    const { ordersPayed, ordersPrepared, ordersFine, ordersDelivery, getOrdersByStatus } = useContext(OrderContext)
 
     const getOrders = async (status: string) => {
         const result = await getOrdersByStatus(status)
-        console.log('Ordenes: '+ JSON.stringify(result, null,3))
+        /* console.log('Ordenes: '+ JSON.stringify(result, null,3)) */
     }
     return {
         ordersPayed,

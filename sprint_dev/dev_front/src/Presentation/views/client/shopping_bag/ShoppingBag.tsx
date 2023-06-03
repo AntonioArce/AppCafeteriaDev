@@ -1,5 +1,5 @@
-import React, { useContext, useEffect } from 'react'
-import { View, Text, FlatList, ToastAndroid } from 'react-native'
+import React, { useContext, useEffect, useState } from 'react'
+import { View, Text, FlatList, ToastAndroid, Alert, Pressable, Modal } from 'react-native'
 import useViewModel from './ViewModel';
 import { ShoppingBagItem } from './Item';
 import { RoundedButton } from '../../../components/RoundedButton';
@@ -13,6 +13,7 @@ interface Props extends StackScreenProps<ClientStackParamList, 'ClientShoppingBa
 export const ClientShoppingBagScreen = ({ navigation, route }: Props) => {
 
   const { shoppingBag, total, responseMessage, addItem, subtractItem, deleteItem, createOrder } = useViewModel();
+  const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
     if (responseMessage !== '') {
@@ -51,10 +52,36 @@ export const ClientShoppingBagScreen = ({ navigation, route }: Props) => {
                 }
             }} /> */}
           <RoundedButton text='CONTINUAR CON EL PAGO' onPress={() => {
-            navigation.navigate('ClientPaymentFormScreen')
+            if (shoppingBag.length == 0) {
+              setModalVisible(true)
+            } else {
+              navigation.navigate('ClientPaymentFormScreen')
+            }
           }} />
         </View>
       </View>
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert('Modal has been closed.');
+          setModalVisible(!modalVisible);
+        }}>
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalText}>---------------------------------------------------</Text>
+            <Text style={styles.modalText}>Tu bolsa de compras esta vacia!!</Text>
+            <Text style={styles.modalText}>Para proceder al pago, necesitas minimo un producto</Text>
+            <Text style={styles.modalText}>---------------------------------------------------</Text>
+            <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={() => setModalVisible(!modalVisible)}>
+              <Text style={styles.textStyle}>Cerrar</Text>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
     </View>
   )
 }
