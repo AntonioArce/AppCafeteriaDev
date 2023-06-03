@@ -6,6 +6,7 @@ import { ShoppingBagContext } from "../../../../context/ShoppingBagContext";
 import { CreatePaymentMercadoPagoUseCase } from '../../../../../Domain/useCases/mercado_pago/CreatePaymentMercadoPago';
 import { PaymentParams } from '../../../../../Data/sources/remote/models/PaymentParams';
 import { UserContext } from '../../../../context/UserContext';
+import { OrderContext } from "../../../../context/OrderContext";
 import { ResponseMercadoPagoPayment } from '../../../../../Data/sources/remote/models/ResponseMercadoPagoPayment';
 
 interface DropDownProps {
@@ -15,6 +16,7 @@ interface DropDownProps {
 const ClientPaymentInstallmentsViewModel = (cardToken: ResponseMercadoPagoCardToken) => {
     const { total, shoppingBag } = useContext(ShoppingBagContext);
     const { user } = useContext(UserContext);
+    const { getOrdersByClientAndStatus } = useContext(OrderContext)
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState(null);
     const [responseMessage, setResponseMessage] = useState('');
@@ -68,7 +70,6 @@ const ClientPaymentInstallmentsViewModel = (cardToken: ResponseMercadoPagoCardTo
         setPaymentData(result.data as ResponseMercadoPagoPayment);
         setLoading(false);
         setResponseMessage(result.message);
-
 
     }
 

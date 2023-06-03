@@ -14,7 +14,7 @@ const RegisterStyles = StyleSheet.create({
   login: {
     backgroundColor: 'white',
     width: '85%',
-    height: '75%',
+    height: '78%',
     position: 'absolute',
     padding: 45,
     justifyContent: 'center',
@@ -82,6 +82,14 @@ const RegisterStyles = StyleSheet.create({
     marginBottom: 15,
     textAlign: 'center',
   },
+  eye: {
+    width: 20,
+    height: 20,
+    marginLeft: 235
+  },
+  register: {
+    flexDirection: 'row'
+  }
 });
 
 export default RegisterStyles

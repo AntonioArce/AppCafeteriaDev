@@ -45,8 +45,8 @@ const RegisterViewModel = () => {
             setErrorMessage('Ingresa tu telefono')
             return false
         }
-        if (values.contrasena === '') {
-            setErrorMessage('Ingresa tu contraseña')
+        if (values.contrasena === '' /* !validarContrasena(values.contrasena) */) {
+            setErrorMessage('La contraseña debe tener minimo una letra, un numero y un caracter especial')
             return false
         }
         if (!validarCorreo(values.correo)) {
@@ -54,7 +54,7 @@ const RegisterViewModel = () => {
             return false
         }
         if (values.confirmPassword === '') {
-            setErrorMessage('Ingresa la confirmacion de la contraseña')
+            setErrorMessage('Repite tu contraseña')
             return false
         }
         if (values.contrasena != values.confirmPassword) {

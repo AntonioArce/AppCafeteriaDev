@@ -14,7 +14,7 @@ const HomeStyles = StyleSheet.create({
   login: {
     backgroundColor: 'white',
     width: '82%',
-    height: 390,
+    height: 400,
     position: 'absolute',
     padding: 40,
     justifyContent: 'center',
@@ -61,6 +61,11 @@ const HomeStyles = StyleSheet.create({
     borderBottomColor: 'blue',
     fontWeight: 'bold',
     fontSize: 15
+  },
+  eye: {
+    width: 25,
+    height: 25,
+    marginLeft: 230
   },
 });
 

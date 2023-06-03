@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Text, View, Image, ScrollView, ToastAndroid, Modal, Alert, Pressable } from 'react-native';
+import { Text, View, Image, ScrollView, ToastAndroid, Modal, Alert, Pressable, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { RoundedButton } from '../../components/RoundedButton';
 import { CustomTextInput } from '../../components/CustomTextInput';
@@ -11,6 +11,8 @@ import { RootStackParamList } from '../../navigator/MainStackNavigator';
 
 export const RegisterScreen = () => {
       const navigation = useNavigation<StackNavigationProp<RootStackParamList>>()
+      const [visiblePassword, setVisiblePassword] = useState(true)
+      const [visibleConfirm, setVisibleConfirm] = useState(true)
       const { nombre, apellido_paterno, apellido_materno, num_telefono, contrasena, correo, confirmPassword,
             errorMessage, setErrorMessage, successMessage, onChange, Register, modal, setModal } = useViewModel()
       useEffect(() => {
@@ -19,19 +21,14 @@ export const RegisterScreen = () => {
                   setErrorMessage('')
             }
       }, [errorMessage])
-      /* useEffect(() => {
-            if (successMessage != '') {
-                 
-            }
-      }, [successMessage])
- */
+
       return (
             <View style={styles.container}>
                   <Image source={require('../../../../assets/cafes.jpg')} style={styles.back} />
                   <View style={styles.login}>
                         <Text style={styles.loginTitle}>Ingresa tus datos</Text>
                         <View style={styles.loginForm}>
-                              <ScrollView style={{ marginBottom: 5 }}>
+                              <ScrollView style={{ marginBottom: 20 }}>
                                     <CustomTextInput
                                           placeholder='Nombres'
                                           keyboardType='default'
@@ -67,24 +64,41 @@ export const RegisterScreen = () => {
                                           onChangeText={onChange}
                                           value={correo}
                                     />
+
                                     <CustomTextInput
                                           placeholder='Contraseña'
                                           keyboardType='default'
                                           property='contrasena'
                                           onChangeText={onChange}
                                           value={contrasena}
-                                          secureTextEntry={true}
+                                          secureTextEntry={visiblePassword}
                                     />
+                                    <TouchableOpacity onPress={() => {
+                                          if (visiblePassword)
+                                                setVisiblePassword(false)
+                                          else
+                                                setVisiblePassword(true)
+                                    }}>
+                                          <Image style={styles.eye} source={require('../../../../assets/testigo.png')} />
+                                    </TouchableOpacity>
                                     <CustomTextInput
                                           placeholder='Confirme su contraseña'
                                           keyboardType='default'
                                           property='confirmPassword'
                                           onChangeText={onChange}
                                           value={confirmPassword}
-                                          secureTextEntry={true}
+                                          secureTextEntry={visibleConfirm}
                                     />
+                                    <TouchableOpacity onPress={() => {
+                                          if (visibleConfirm)
+                                                setVisibleConfirm(false)
+                                          else
+                                                setVisibleConfirm(true)
+                                    }}>
+                                          <Image style={styles.eye} source={require('../../../../assets/testigo.png')} />
+                                    </TouchableOpacity>
                               </ScrollView>
-                              <View>
+                              <View style={{ top: 5 }}>
                                     <RoundedButton text='REGISTRARSE' onPress={() => Register()} />
                               </View>
                         </View>

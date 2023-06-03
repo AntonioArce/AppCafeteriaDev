@@ -1,13 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { View, Text, Image } from 'react-native';
 import { StackScreenProps } from '@react-navigation/stack';
+import { OrderContext } from "../../../../context/OrderContext";
+import { UserContext } from '../../../../context/UserContext';
 import { ClientStackParamList } from '../../../../navigator/ClientStackNavigator';
-import styles from './Styles';
 import { RoundedButton } from '../../../../components/RoundedButton';
+import styles from './Styles';
 
 interface Props extends StackScreenProps<ClientStackParamList, 'ClientPaymentStatusScreen'> { }
 export const ClientPaymentStatusScreen = ({ navigation, route }: Props) => {
-
     const { paymentData } = route.params;
     console.log('Payment data: ' + JSON.stringify(paymentData, null, 3));
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Text, View, Image, TextInput, Button, Touchable, TouchableOpacity, ToastAndroid } from 'react-native';
 import { useNavigation } from '@react-navigation/native'
 import { StackNavigationProp, StackScreenProps } from '@react-navigation/stack';
@@ -13,6 +13,8 @@ interface Props extends StackScreenProps<RootStackParamList, "HomeScreen"> { }
 
 export const HomeScreen = ({ navigation, route }: Props) => {
   const { email, password, errorMessage, user, onChange, login, setErrorMessage } = useViewModel();
+  const [visiblePassword, setVisiblePassword] = useState(true)
+  const [visibleConfirm, setVisibleConfirm] = useState(true)
 
   useEffect(() => {
     if (errorMessage !== '') {
@@ -56,8 +58,16 @@ export const HomeScreen = ({ navigation, route }: Props) => {
             property='password'
             onChangeText={onChange}
             value={password}
-            secureTextEntry={true}
+            secureTextEntry={visiblePassword}
           />
+          <TouchableOpacity onPress={() => {
+            if (visiblePassword)
+              setVisiblePassword(false)
+            else
+              setVisiblePassword(true)
+          }}>
+            <Image style={styles.eye} source={require('../../../../assets/testigo.png')} />
+          </TouchableOpacity>
           <View style={{ marginTop: 30 }}>
             <RoundedButton text='ENTRAR' onPress={() => login()} />
             {/* <View style={styles.loginFormLinks}>

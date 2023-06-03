@@ -36,7 +36,7 @@ export const AdminTabsNavigator = () => {
             <Tab.Screen name="AdminOrderStackNavigator" component={AdminOrderStackNavigator}
                 options={{
                     title: 'Pedidos',
-                    tabBarLabel: 'Pedidos',
+                    tabBarLabel: 'Ordenes',
                     tabBarIcon: ({ color }) => (
                         <Image source={require('../../../assets/order.png')} style={{ width: 25, height: 25 }} />
                     )

@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useEffect, useState, useCallback } from 'react'
-import { FlatList, Text, View, useWindowDimensions } from 'react-native'
+import { FlatList, RefreshControl, ScrollView, Text, View, useWindowDimensions } from 'react-native'
 import { TabBar, TabView } from 'react-native-tab-view';
 import { ClientOrderStackParamList } from '../../../../navigator/ClientOrderStackNavigator';
 import { OrderListItem } from './Item';
@@ -22,6 +22,7 @@ const OrderListView = ({ status }: Props) => {
         getOrders(user.idCliente!, status)
     }, [status])
 
+
     const onRefresh = useCallback(() => {
         setRefreshing(true);
         getOrders(user.idCliente!, status)
@@ -41,26 +42,30 @@ const OrderListView = ({ status }: Props) => {
     }, [])
 
     return (
-        <View>
-            <FlatList
-                data={
-                    status === '1'
-                        ? ordersPayed
-                        : status === '2'
-                            ? ordersPrepared
-                            : status === '3'
-                                ? ordersFine
-                                : status == '4'
-                                    ? ordersDelivery
-                                    : []
-                }
-                keyExtractor={(item) => item.id!}
-                renderItem={({ item }) => <OrderListItem order={item} navigation={navigation} />}
-                refreshing={refreshing}
-                onRefresh={onRefresh}
+        <ScrollView
+            refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+        >
+            <View>
+                <FlatList
+                    data={
+                        status === '1'
+                            ? ordersPayed
+                            : status === '2'
+                                ? ordersPrepared
+                                : status === '3'
+                                    ? ordersFine
+                                    : status == '4'
+                                        ? ordersDelivery
+                                        : []
+                    }
+                    keyExtractor={(item) => item.id!}
+                    renderItem={({ item }) => <OrderListItem order={item} navigation={navigation} />}
+                    refreshing={refreshing}
+                    onRefresh={onRefresh}
 
-            />
-        </View>
+                />
+            </View>
+        </ScrollView>
     );
 }
 
