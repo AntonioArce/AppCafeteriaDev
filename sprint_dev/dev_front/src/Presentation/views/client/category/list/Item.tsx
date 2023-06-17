@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     container: {
         alignSelf: 'center',
         paddingBottom: 20,
-        paddingTop: 10,
+        paddingTop: 15,
         paddingHorizontal: 4,
     },
     imageContainer: {
@@ -51,6 +51,8 @@ const styles = StyleSheet.create({
         width: '100%',
         borderTopLeftRadius: 24,
         borderTopRightRadius: 24,
+        borderBottomLeftRadius: 24,
+        borderBottomRightRadius: 24,
         opacity: 0.9
 
     },
@@ -59,6 +61,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#2f6edc',
         borderBottomLeftRadius: 18,
         borderBottomRightRadius: 18,
+        borderTopLeftRadius: 18,
+        borderTopRightRadius: 18,
         alignItems: 'center',
         justifyContent: 'center',
         elevation: 20

@@ -6,9 +6,9 @@ import { ClientStackParamList } from '../../../../navigator/ClientStackNavigator
 import { ClientCategoryItem } from './Item';
 import useViewModel from './ViewModel'
 
-interface Props extends StackScreenProps<ClientStackParamList, 'ClientCategoryListScreen'>{};
+interface Props extends StackScreenProps<ClientStackParamList, 'ClientCategoryListScreen'> { };
 
-export const ClientCategoryListScreen = ({navigation, route}: Props) => {
+export const ClientCategoryListScreen = ({ navigation, route }: Props) => {
 
   const { categories, getCategories } = useViewModel();
   const width = Dimensions.get('window').width;
@@ -17,16 +17,16 @@ export const ClientCategoryListScreen = ({navigation, route}: Props) => {
   useEffect(() => {
     getCategories()
   }, [])
-  
+
   return (
     <View style={{ flex: 1 }}>
-        <View style={{backgroundColor: 'white'}}>
-            <FlatList
-                data={ categories }
-                keyExtractor={ (item) => item.idTipo_Producto! }
-                renderItem={ ({ item }) => <ClientCategoryItem category={item} height={ height * 0.65 } width={ width - 83 } navigation={navigation}/>}
-            />
-            </View>  
+      <View style={{ backgroundColor: 'white' }}>
+        <FlatList
+          data={categories}
+          keyExtractor={(item) => item.idTipo_Producto!}
+          renderItem={({ item }) => <ClientCategoryItem category={item} height={height * 0.09} width={width - 50} navigation={navigation} />}
+        />
+      </View>
     </View>
   )
 }

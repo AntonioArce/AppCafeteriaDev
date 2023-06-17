@@ -6,12 +6,14 @@ const logger = require('morgan')
 const cors = require('cors')
 const multer = require('multer')
 const mercadopago = require('mercadopago')
+
 mercadopago.configure({
     sandbox: true,
     access_token: 'TEST-1660363096022782-052520-22bed494dcb9369237f7e9997c8e384b-294595697'
 })
 
 const io = require('socket.io')(server)
+
 /*IMPORTAR SOCKETS*/
 const ordersSocket = require('./sockets/ordersSockets')
 
@@ -35,7 +37,7 @@ const upload = multer({
 })
 
 
-server.listen(3000, '192.168.1.12' || 'localhost', function(){
+server.listen(3000, '192.168.1.21' || 'localhost', function(){
     console.log('Server running at http://192.168.1.73:' + port)
 })
 

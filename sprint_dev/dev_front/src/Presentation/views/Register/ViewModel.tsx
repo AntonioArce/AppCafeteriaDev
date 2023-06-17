@@ -46,7 +46,7 @@ const RegisterViewModel = () => {
             return false
         }
         if (values.contrasena === '' /* !validarContrasena(values.contrasena) */) {
-            setErrorMessage('La contraseña debe tener minimo una letra, un numero y un caracter especial')
+            setErrorMessage('Introdusca la contraseña')
             return false
         }
         if (!validarCorreo(values.correo)) {
